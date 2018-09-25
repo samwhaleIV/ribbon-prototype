@@ -195,7 +195,7 @@ function SetupStuffAndDoStuffAndStuff() {
     });
 
     leftInsert.addEventListener("mouseout",function() {
-        element(leftInsert);
+        elementHoverEnd(leftInsert);
     });
 
     rightInsert.addEventListener("mouseover",function() {
