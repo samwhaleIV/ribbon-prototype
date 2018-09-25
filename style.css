@@ -59,9 +59,44 @@ body,html,p {
     color: white;
 }
 
-#number_bar div p:hover {
+#number_bar div p.selected {
     background-color: white;
     color: black;
+}
+
+#pending_input {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+    font-weight: bold;
+    user-select: none;
+}
+
+#left_insert, #right_insert {
+    text-align: center;
+    width: 10vw;
+    height: 11vw;
+    border-radius: 2vw;
+}
+
+#left_insert.selected, right_insert.selected {
+    background-color: white;
+    box-shadow: 0 0 1vw white;
+}
+
+#left_insert {
+    float: left;
+}
+#right_insert {
+    float: right;
+}
+
+#middle_input {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media all and (orientation: landscape) {
@@ -81,7 +116,7 @@ body,html,p {
         font-size: 15vh;
         width: 86vh;
         height: 18vh;
-        top: 46vh;
+        top: 34.5vh;
     }
     #number_bar p {
         padding-left: 1.5vh;
@@ -91,6 +126,23 @@ body,html,p {
         top: 6vh;
         width: 100vh;
         height: 28vh;
+    }
+    #pending_input {
+        border-bottom: 1vh solid black;
+        font-size: 10vh;
+        width: 86vh;
+        height: 12vh;
+        top: 15.5vh;
+        line-height: 11.5vh;
+    }
+    #left_insert, #right_insert {
+        width: 10vh;
+        height: 11vh;
+        border-radius: 2vh;
+    }
+    
+    #left_insert.selected, #right_insert.selected {
+        box-shadow: 0 0 1vh white;
     }
 }
   
@@ -113,7 +165,7 @@ body,html,p {
         font-size: 15vw;
         width: 86vw;
         height: 18vw;
-        top: 46vw;
+        top: 34.5vw;
     }
     #number_bar p {
         padding-left: 1.5vw;
@@ -123,5 +175,23 @@ body,html,p {
         top: 6vw;
         width: 100vw;
         height: 28vw;
+    }
+    #pending_input {
+        border-bottom: 1vw solid black;
+        font-size: 10vw;
+        width: 86vw;
+        height: 12vw;
+        top: 15.5vw;
+        line-height: 11.5vw;
+    }
+    #left_insert, #right_insert {
+        text-align: center;
+        width: 10vw;
+        height: 11vw;
+        border-radius: 2vw;
+    }
+    #left_insert.selected, #right_insert.selected {
+        background-color: white;
+        box-shadow: 0 0 1vw white;
     }
 }

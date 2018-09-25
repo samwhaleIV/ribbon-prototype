@@ -1,8 +1,5 @@
 var canvas = document.getElementById("overlay_canvas");
 var context = canvas.getContext("2d");
-window.addEventListener("resize", () => {
-    drawString();
-});
 
 //https://stackoverflow.com/a/49371349/3967379
 function drawCurve(points, tension) {
@@ -27,7 +24,6 @@ function drawCurve(points, tension) {
     }
     context.stroke();
 }
-
 //https://stackoverflow.com/a/47593316/3967379
 var LCG=s=>()=>(2**31-1&(s=Math.imul(48271,s)))/2**31;
 
@@ -38,13 +34,10 @@ function getRandomRange(rand,min,max) {
 function usi(value) {
     updateUserInput(value);
 }
-
-var userInput = ["a","b","c","d","e","f","g"];
 function updateUserInput(value) {
     userInput = value.split("");
-    var lettersParent = document.getElementById("number_bar").children[0];
     for(var i = 0;i<7;i++) {
-        lettersParent.children[i].textContent = userInput[i];
+        userLettersElements[i].textContent = userInput[i];
     }
 }
 
@@ -53,14 +46,13 @@ function udsi(value) {
 }
 function updateDrawStringInput(value) {
     drawStringInput = value.split("");
-    var lettersParent = document.getElementById("ribbon_letters");
     for(var i = 0;i<7;i++) {
-        lettersParent.children[i].textContent = drawStringInput[i];
+        ribbonLettersElements[i].textContent = drawStringInput[i];
     }
     drawString();
 }
 
-var drawStringInput = ["a","b","c","d","e","f","g"];
+
 function drawString() {
     var seed = 0;
     for(var i = 0;i<7;i++) {
@@ -93,4 +85,136 @@ function drawString() {
 
 }
 
-drawString();
+var selectedElement = null;
+
+function SelectElement(element) {
+    if(selectedElement === element) {
+        selectedElement.className = "";
+        selectedElement = null;
+        return;
+    } else {
+
+        if(selectedElement !== null) {
+            selectedElement.className = "";
+            selectedElement = null;
+        }
+
+        element.className = "selected";
+        selectedElement = element;
+    }
+}
+
+function elementHoverEnd(element) {
+
+    if(selectedElement !== null) {
+        selectedElement.className = "";
+        selectedElement = null;
+    }
+
+}
+
+function defFoc() {
+    if(selectedElement === null) {
+        SelectElement(defaultFocusElement);
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+function focusUp() {
+    if(defFoc) {
+        //todo
+    }
+}
+
+function focusDown() {
+    if(defFoc) {
+         //todo   
+    }
+}
+
+function focusLeft() {
+    if(defFoc) {
+        //todo
+    }
+}
+
+function focusRight() {
+    if(defFoc) {
+        //todo
+    }
+}
+
+function userInterfaceClick() {
+    if(selectedElement !== null) {
+        //todo
+    }
+}
+
+function userInterfaceBackClick() {
+    if(selectedElement === null) {
+
+    }
+}
+
+
+var userLettersElements;
+var ribbonLettersElements;
+var userInput;
+var drawStringInput;
+var leftInsert;
+var rightInsert;
+var defaultFocusElement;
+function SetupStuffAndDoStuffAndStuff() {
+
+    userLettersElements = document.getElementById("number_bar").children[0].children;
+    ribbonLettersElements = document.getElementById("ribbon_letters").children;
+
+    for(var i = 0;i<7;i++) {
+
+        (function(fuckYouJavascript) {
+
+            fuckYouJavascript.addEventListener("mouseover", function() {
+                SelectElement(fuckYouJavascript);
+            });
+            fuckYouJavascript.addEventListener("mouseout", function() {
+                elementHoverEnd(fuckYouJavascript);
+            });
+
+        })(userLettersElements[i]);
+
+    }
+
+    leftInsert = document.getElementById("left_insert");
+    rightInsert = document.getElementById("right_insert");
+
+    leftInsert.addEventListener("mouseover",function() {
+        SelectElement(leftInsert);
+    });
+
+    leftInsert.addEventListener("mouseout",function() {
+        element(leftInsert);
+    });
+
+    rightInsert.addEventListener("mouseover",function() {
+        SelectElement(rightInsert);
+    });
+
+    rightInsert.addEventListener("mouseout",function() {
+        elementHoverEnd(leftInsert);
+    });
+    
+    defaultFocusElement = userLettersElements[0];
+
+    updateDrawStringInput("abcdefg");
+    updateUserInput("abcdefg");
+
+    drawString();
+    window.addEventListener("resize", () => {
+        drawString();
+    });
+
+}
+SetupStuffAndDoStuffAndStuff();
