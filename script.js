@@ -203,7 +203,7 @@ function SetupStuffAndDoStuffAndStuff() {
     });
 
     rightInsert.addEventListener("mouseout",function() {
-        elementHoverEnd(leftInsert);
+        elementHoverEnd(rightInsert);
     });
     
     defaultFocusElement = userLettersElements[0];

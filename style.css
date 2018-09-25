@@ -76,14 +76,10 @@ body,html,p {
 
 #left_insert, #right_insert {
     text-align: center;
-    width: 10vw;
-    height: 11vw;
-    border-radius: 2vw;
 }
 
-#left_insert.selected, right_insert.selected {
+#left_insert.selected, #right_insert.selected {
     background-color: white;
-    box-shadow: 0 0 1vw white;
 }
 
 #left_insert {
