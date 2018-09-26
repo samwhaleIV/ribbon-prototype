@@ -1,0 +1,50 @@
+document.addEventListener('keypress', function(e){
+    switch (e.keyCode) {
+        case 211:  // GamepadLeftThumbstickUp
+        case 203:  // GamepadDPadUp
+            break;
+
+        case 212:  // GamepadLeftThumbstickDown
+        case 204:  // GamepadDPadDown
+            break;
+
+        case 214:  // GamepadLeftThumbstickLeft
+        case 205:  // GamepadDPadLeft
+            break;
+
+        case 213:  // GamepadLeftThumbstickRight
+        case 206:  // GamepadDPadRight
+            break;
+
+        case 195:  // A Button
+            break;
+
+        case 196: // B button
+            break;
+
+        case 197: // X Button
+            break;
+
+        case 198: // Y Button
+            break;
+
+        case 208: // View button
+            break;
+
+        case 207: // Menu button
+            break;
+
+        case 200: // Left Bumper
+            break;
+
+        case 199: // Right Bumper
+            break;
+
+        case 201: // Left Trigger
+            break;
+
+        case 202: // Right Trigger
+            break;
+
+    }
+});
