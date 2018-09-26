@@ -1,7 +1,3 @@
-#game_square {
-    margin-left: auto;
-    margin-right: auto;
-}
 #ribbon {
     display: block;
     position: relative;
@@ -10,13 +6,10 @@
     position: absolute;
     display: block;
 }
-
-
 #ribbon_letters {
     display: flex;
     flex-wrap: nowrap;
     font-family: "Earwig Factory";
-    user-select: none;
     color: black;
     margin-left: auto;
     margin-right: auto;
@@ -24,7 +17,6 @@
     background-color: white;
     box-shadow: 0 0 24px 0 rgba(115, 115, 115, 0.5);
 }
-
 #number_bar {
     position: relative;
     display: flex;
@@ -42,14 +34,20 @@
 }
 
 #number_bar div p {
-    user-select: none;
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
 #number_bar div p.selected {
     background-color: white;
     color: black;
+    box-shadow: inset 0px 0px 6px 0px black;
+}
+
+#number_bar div p.activated {
+    background-color: #71988b;
+    color: white;
 }
 
 #pending_input {
@@ -57,13 +55,13 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    user-select: none;
 }
 
 #left_insert, #right_insert {
     text-align: center;
+    cursor: pointer;
 }
 
 #left_insert.selected, #right_insert.selected {
@@ -87,18 +85,110 @@
     box-shadow: 0 0 1px white;
 }
 
+#top_bar {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    background: #00000054;
+    top: 0%;
+}
+
+#top_bar_score {
+    font-family: sans-serif;
+    color: white;
+    float: right;
+    overflow-wrap: normal;
+    white-space: nowrap;
+    text-align: right;
+    position: relative;
+    font-size: 20px;
+    line-height: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+#timer_bar {
+    width: calc(100% - 40px);
+    height: 100%;
+    position: absolute;
+    left: 40px;
+}
+
+#popout_button {
+    position: fixed;
+    background-color: white;
+    height: 40px;
+    width: 40px;
+}
+#popout_button p {
+    font-size: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#popout button {
+    padding: 12%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 10px;
+    background: white;
+    border: 2px dotted black;
+    margin-bottom: 10px;
+}
+
+
+#popout *.selected {
+    border: 2px solid black;
+}
+#popout {
+    top: 40px;
+    height: calc(100vh - 40px);
+    width: 100%;
+    position: absolute;
+    background: white;
+    box-shadow: inset 0px 0px 4px 0px #616161;
+    display: block;
+    transition-property: top;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: scroll;
+}
+
+#popout.hidden {
+    top: -100%;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+#middle_input {
+    background: none;
+    box-shadow: none;
+
+}
+
+#timer_bar_child {
+    position: relative;
+    height: 100%;
+    width: 0%;
+    background-color: #00000096;
+}
+
 @media all and (orientation: landscape) {
-    #game_square {
-        height: 100vh;
-        width: 100vh;
-    }
     #ribbon_letters {
         font-size: 22vh;
     }
     #overlay_canvas {
         width: 100vh;
         height: 26vh;
-        top: -4vh;
+        top: -5vh;
     }
     #number_bar {
         font-size: 15vh;
@@ -111,7 +201,7 @@
         padding-right: 1.5vh;
     }
     #ribbon {
-        top: 6vh;
+        top: 16vh;
         width: 100vh;
         height: 28vh;
     }
@@ -120,7 +210,7 @@
         font-size: 10vh;
         width: 86vh;
         height: 12vh;
-        top: 15.5vh;
+        top: 23vh;
         line-height: 11.5vh;
     }
     #left_insert, #right_insert {
@@ -132,21 +222,14 @@
         padding-right: 4vh;
     }
 }
-  
 @media all and (orientation: portrait) {
-    #game_square {
-        height: 100vw;
-        width: 100vw;
-        top: calc(50vh - 50vw);
-        position: absolute;
-    }
     #ribbon_letters {
         font-size: 22vw;
     }
     #overlay_canvas {
         width: 100vw;
         height: 26vw;
-        top: -4vw;
+        top: -5vw;
     }
     #number_bar {
         font-size: 15vw;

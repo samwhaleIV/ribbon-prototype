@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <div id="game_square">
+    <div id="game_square" class="justified-fullscreen-square">
         <div id="ribbon">
-            <div id="ribbon_letters">
+            <div id="ribbon_letters" class="no-select">
                 <p></p>
                 <p></p>
                 <p></p>
@@ -21,23 +21,40 @@
             </div>
             <canvas id="overlay_canvas"></canvas>
         </div>
-        <div id="pending_input">
-            <p id="left_insert">+</p>
+        <div id="pending_input" class="no-select">
+            <p id="left_insert">x</p>
             <p id="middle_input">t-e-t-s</p>
-            <p id="right_insert">-</p>
+            <p id="right_insert">+</p>
         </div>
         <div id="number_bar">
-            <div>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+            <div class="no-select">
+                <p id="n0"></p>
+                <p id="n1"></p>
+                <p id="n2"></p>
+                <p id="n3"></p>
+                <p id="n4"></p>
+                <p id="n5"></p>
+                <p id="n6"></p>
             </div>
         </div>
     </div>
+    <div id="popout" class="hidden">
+        <button id="p0">Don't click me, you'll die!</button>
+        <button id="p1">Don't click me, you'll die!</button>
+        <button id="p2">Don't click me, you'll die!</button>
+        <button id="p3">Don't click me, you'll die!</button>
+        <button id="p4">Don't click me, you'll die!</button>
+    </div>
+    <div id="top_bar" class="no-select">
+        <div id="timer_bar">
+            <div id="timer_bar_child"></div>
+        </div>
+        <p id="top_bar_score">score <span id="score_span"></span></p>
+        <div id="popout_button">
+            <p>=</p>
+        </div>
+    </div>
+    <script src="../input/dev.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

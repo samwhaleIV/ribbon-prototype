@@ -1,6 +1,3 @@
-var canvas = document.getElementById("overlay_canvas");
-var context = canvas.getContext("2d");
-
 //https://stackoverflow.com/a/49371349/3967379
 function drawCurve(points, tension) {
     context.beginPath();
@@ -84,80 +81,174 @@ function drawString() {
 }
 
 var selectedElement = null;
-
+var inDropDownMenu = false;
 function SelectElement(element) {
     if(selectedElement === element) {
-        selectedElement.className = "";
-        selectedElement = null;
         return;
     } else {
-
         if(selectedElement !== null) {
-            selectedElement.className = "";
+            selectedElement.classList.remove("selected");
             selectedElement = null;
         }
-
-        element.className = "selected";
+        element.classList.add("selected");
         selectedElement = element;
+        console.log("Selected: " + element.id);
     }
 }
-
 function elementHoverEnd(element) {
-
     if(selectedElement !== null) {
-        selectedElement.className = "";
+        selectedElement.classList.remove("selected");
         selectedElement = null;
     }
-
 }
-
 function defFoc() {
     if(selectedElement === null) {
-        SelectElement(defaultFocusElement);
+        if(!inDropDownMenu) {
+            SelectElement(defaultFocusElement);       
+        } else {
+            SelectElement(defaultDropDownElement);
+        }
         return false;
     } else {
         return true;
     }
 }
-
-
 function focusUp() {
-    if(defFoc) {
-        //todo
+    if(defFoc()) {
+        if(!inDropDownMenu) {
+            if(selectedElement.id.startsWith("n")) {
+                if(selectedElement.id.substr(1,1) <= 3) {
+                    SelectElement(leftInsert);
+                } else {
+                    SelectElement(rightInsert);
+                }
+            } else if(selectedElement.id.endsWith("insert")) {
+                userInterfaceClick(popoutButton);
+            } else if(selectedElement.id == "popout_button") {
+                userInterfaceClick(popoutButton);
+            }
+        } else {
+            var number = Number(selectedElement.id.substr(1,1)) - 1;
+            if(number < 0) {
+                userInterfaceClick(popoutButton);
+            } else {
+                SelectElement(document.getElementById(`p${number}`));
+            }
+            //todo
+        }
     }
 }
 
 function focusDown() {
-    if(defFoc) {
-         //todo   
+    if(defFoc()) {
+        if(!inDropDownMenu) {
+            switch(selectedElement.id) {
+                case "popout_button":
+                    SelectElement(leftInsert);
+                    break;
+                case "left_insert":
+                    SelectElement(document.getElementById("n0"));
+                    break;
+                case "right_insert":
+                    SelectElement(document.getElementById("n6"));
+                    break;
+            }
+            if(selectedElement.id == "popout_button") {
+                SelectElement(leftInsert);
+            }
+        } else {
+            var number = Number(selectedElement.id.substr(1,1))+1;
+            if(number < dropDownItemCount) {
+                SelectElement(document.getElementById(`p${number}`));
+            } else {
+                userInterfaceClick(popoutButton);
+            }
+        }
     }
 }
-
 function focusLeft() {
-    if(defFoc) {
-        //todo
+    if(defFoc()) {
+        if(!inDropDownMenu) {
+            if(selectedElement.id.startsWith("n")) {
+                var number = selectedElement.id.substr(1,1);
+                if(number > 0) {
+                    number--;
+                } else {
+                    number = 6;
+                }
+                SelectElement(document.getElementById(`n${number}`));
+            } else if(selectedElement.id == "right_insert") {
+                SelectElement(leftInsert);
+            } else if(selectedElement.id == "left_insert") {
+                SelectElement(rightInsert);
+            }
+        } else {
+            focusUp();
+        }
     }
 }
 
 function focusRight() {
-    if(defFoc) {
-        //todo
+    if(defFoc()) {
+        if(!inDropDownMenu) {
+            if(selectedElement.id.startsWith("n")) {
+                var number = selectedElement.id.substr(1,1);
+                if(number < 6) {
+                    number++;
+                } else {
+                    number = 0;
+                }
+                SelectElement(document.getElementById(`n${number}`));
+            } else if(selectedElement.id == "left_insert") {
+                SelectElement(rightInsert);
+            } else if(selectedElement.id == "right_insert") {
+                SelectElement(leftInsert);
+            }
+        } else {
+            focusDown();
+        }
     }
 }
 
-function userInterfaceClick() {
-    if(selectedElement !== null) {
-        //todo
+function userInterfaceBack() {
+    if(inDropDownMenu) {
+        userInterfaceClick(popoutButton);
     }
 }
 
-function userInterfaceBackClick() {
-    if(selectedElement === null) {
-
+function userInterfaceClick(element) {
+    if(!element) {
+        element = selectedElement;
+    } else {
+        SelectElement(element);
+    }
+    if(element) {
+        console.log("Clicked: " + element.id);
+        if(!inDropDownMenu) {
+            switch(element.id) {
+                case "popout_button":
+                    popout.classList.remove("hidden");
+                    inDropDownMenu = true;
+                    SelectElement(defaultDropDownElement);
+                    break;
+                case "left_insert":
+                    break;
+                case "right_insert":
+                    break;
+                default:
+                    selectedElement.classList.toggle("activated");
+                    break;
+            }
+        } else {
+            switch(element.id) {
+                case "popout_button":
+                    popout.classList.add("hidden");
+                    inDropDownMenu = false;
+                    break;
+            }
+        }
     }
 }
-
-
 var userLettersElements;
 var ribbonLettersElements;
 var userInput;
@@ -165,11 +256,42 @@ var drawStringInput;
 var leftInsert;
 var rightInsert;
 var defaultFocusElement;
+var defaultDropDownElement;
 var middleInput;
-function SetupStuffAndDoStuffAndStuff() {
-
+var canvas;
+var context;
+var popoutButton;
+var scoreSpan;
+var popout;
+var timerBarChild;
+var dropDownItemCount;
+function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
+    leftInsert = document.getElementById("left_insert");
+    rightInsert = document.getElementById("right_insert");
+    middleInput = document.getElementById("middle_input");
+    canvas = document.getElementById("overlay_canvas");
+    context = canvas.getContext("2d");
+    defaultFocusElement = userLettersElements[0];
+    popoutButton = document.getElementById("popout_button");
+    scoreSpan = document.getElementById("score_span");
+    popout = document.getElementById("popout");
+    timerBarChild = document.getElementById("timer_bar_child");
+    defaultDropDownElement = document.getElementById("p0"); //todo set to first true element
+    dropDownItemCount = popout.childElementCount;
+}
+function RegisterInputEvents() {
+    InputSchematic.Up = focusUp;
+    InputSchematic.Down = focusDown;
+    InputSchematic.Left = focusLeft;
+    InputSchematic.Right = focusRight;
+    InputSchematic.Enter = userInterfaceClick;
+    InputSchematic.Back = userInterfaceBack;
+}
+function SetupStuffAndDoStuffAndStuff() {
+
+    RegisterDom();
 
     for(var i = 0;i<7;i++) {
 
@@ -182,13 +304,13 @@ function SetupStuffAndDoStuffAndStuff() {
                 elementHoverEnd(fuckYouJavascript);
             });
 
+            fuckYouJavascript.addEventListener("click",function() {
+                userInterfaceClick(fuckYouJavascript);
+            });
+
         })(userLettersElements[i]);
 
     }
-
-    leftInsert = document.getElementById("left_insert");
-    rightInsert = document.getElementById("right_insert");
-    middleInput = document.getElementById("middle_input");
 
     leftInsert.addEventListener("mouseover",function() {
         SelectElement(leftInsert);
@@ -205,19 +327,57 @@ function SetupStuffAndDoStuffAndStuff() {
     rightInsert.addEventListener("mouseout",function() {
         elementHoverEnd(rightInsert);
     });
-    
-    defaultFocusElement = userLettersElements[0];
 
-    updateDrawStringInput("abcdefg");
-    updateUserInput("abcdefg");
+    leftInsert.addEventListener("click",function() {
+        userInterfaceClick(leftInsert);
+    });
 
-    drawString();
-    window.addEventListener("resize", () => {
+    rightInsert.addEventListener("click",function() {
+        userInterfaceClick(rightInsert);
+    });
+
+    popoutButton.addEventListener("mouseout",function() {
+        elementHoverEnd(popoutButton);
+    });
+
+    popoutButton.addEventListener("mouseover",function() {
+        SelectElement(popoutButton);
+    });
+
+    popoutButton.addEventListener("click",function() {
+        userInterfaceClick(popoutButton);
+    });
+
+    BeginGameRuntime();
+
+    window.addEventListener("resize",function() {
         drawString();
     });
-
-    document.addEventListener("keypress",function(e){
-        middleInput.textContent = e.keyCode;
-    });
+    RegisterInputEvents();
+}
+function SetMiddleInput(input) {
+    if(!input) {
+        middleInput.classList.add("hidden");
+        middleInput.textContent = "";
+        return;
+    }
+    //todo format the text content to include dashes between letters
+    middleInput.textContent = input;
+    middleInput.classList.remove("hidden");
+}
+function SetScore(score) {
+    scoreSpan.textContent = score;
+    //todo format the score to include commas
+}
+function SetTimerBar(normalizedPercent) {
+    timerBarChild.style.width = `${normalizedPercent * 100}%`;
+}
+function BeginGameRuntime() {
+    updateDrawStringInput("abcdefg");
+    updateUserInput("abcdefg");
+    SetScore(0);
+    SetTimerBar(0);
+    SetMiddleInput();
+    drawString();
 }
 SetupStuffAndDoStuffAndStuff();

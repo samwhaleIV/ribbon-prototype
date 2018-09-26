@@ -9,3 +9,29 @@ body,html,p {
     padding: 0;
     margin: 0;
 }
+.no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    cursor: default;
+}
+.justified-fullscreen-square {
+    margin-left: auto;
+    margin-right: auto;
+}
+@media all and (orientation: landscape) {
+    .justified-fullscreen-square {
+        height: 100vh;
+        width: 100vh;
+    }
+}
+@media all and (orientation: portrait) {
+    .justified-fullscreen-square {
+        height: 100vw;
+        width: 100vw;
+        top: calc(50vh - 50vw);
+        position: absolute;
+    }
+}
