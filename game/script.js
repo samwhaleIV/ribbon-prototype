@@ -294,11 +294,11 @@ function enableSoundEngine(dontSave) {
     //set in cache
 }
 function playMusic(dontSave) {
-    soundPlayer.play();
+    musicPlayer.play();
     //set in cache
 }
 function stopMusic(dontSave) {
-    soundPlayer.pause();
+    musicPlayer.pause();
     //set in cache
 }
 function soundEffectsToggled() {
@@ -312,9 +312,9 @@ function soundEffectsToggled() {
 
 function musicToggled() {
     if(!playingMusic) {
-        musicPlayer.play();
+        playMusic();
     } else {
-        musicPlayer.pause();
+        stopMusic();
     }
     playingMusic = !playingMusic;
 }
@@ -440,13 +440,11 @@ function SetupStuffAndDoStuffAndStuff() {
     popoutButton.addEventListener("click",function() {
         userInterfaceClick(popoutButton,true);
     });
-
-    BeginGameRuntime();
-
     window.addEventListener("resize",function() {
         drawString();
     });
     RegisterInputEvents();
+    BeginGameRuntime();
 }
 function SetMiddleInput(input) {
     if(!input) {
@@ -476,9 +474,17 @@ function SetSoundState(musicOn,soundOn) {
         disableSoundEngine(true);
     }
     if(playingMusic) {
-        playMusic(true);
+        try {
+            playMusic(true);
+        } catch(err) {
+            console.warn("Error playing music. Is Chrome not being nice?");
+        }
     } else {
-        stopMusic(true);
+        try {
+            stopMusic(true);
+        } catch(err) {
+            console.warn("Error setting music state. Is Chrome not being nice?");
+        }
     }
 }
 var playingSounds;
@@ -492,7 +498,6 @@ function BeginGameRuntime() {
 
     //load these values from the cache
     SetSoundState(false,true);
-    
     drawString();
 }
 SetupStuffAndDoStuffAndStuff();
