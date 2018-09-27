@@ -275,9 +275,19 @@ function userInterfaceClick(element,byMouse) {
                     break;
                 case "p0":
                     soundToggleElement.checked = !soundToggleElement.checked;
+                    if(soundToggleElement.checked) {
+                        enableSoundEngine();
+                    } else {
+                        disableSoundEngine();
+                    }
                     break;
                 case "p1":
                     musicToggleElement.checked = !musicToggleElement.checked;
+                    if(musicToggleElement.checked) {
+                        playMusic();
+                    } else {
+                        stopMusic();
+                    }
                     break;
             }
         }
@@ -286,37 +296,34 @@ function userInterfaceClick(element,byMouse) {
 
 //dontSave skips writing to app cache
 function disableSoundEngine(dontSave) {
-    //todo
-    //set in cache
+    if(soundToggleElement.checked) {
+        soundToggleElement.checked = false;
+    }
+    playingSounds = false;
+    //set in cache if !dontSave
 }
 function enableSoundEngine(dontSave) {
-    //todo
-    //set in cache
+    if(!soundToggleElement.checked) {
+        soundToggleElement.checked = true;
+    }
+    playingSounds = true;
+    //set in cache if !dontSave
 }
 function playMusic(dontSave) {
+    if(!musicToggleElement.checked) {
+        musicToggleElement.checked = true;
+    }
+    playingMusic = true;
     musicPlayer.play();
-    //set in cache
+    //set in cache if !dontSave
 }
 function stopMusic(dontSave) {
+    if(musicToggleElement.checked) {
+        musicToggleElement.checked = false;
+    }
+    playingMusic = false;
     musicPlayer.pause();
-    //set in cache
-}
-function soundEffectsToggled() {
-    if(!playingSounds) {
-        enableSoundEngine();
-    } else {
-        disableSoundEngine();
-    }
-    playingSounds = !playingSounds;
-}
-
-function musicToggled() {
-    if(!playingMusic) {
-        playMusic();
-    } else {
-        stopMusic();
-    }
-    playingMusic = !playingMusic;
+    //set in cache if !dontSave
 }
 
 var userLettersElements;
@@ -440,6 +447,7 @@ function SetupStuffAndDoStuffAndStuff() {
     popoutButton.addEventListener("click",function() {
         userInterfaceClick(popoutButton,true);
     });
+
     window.addEventListener("resize",function() {
         drawString();
     });

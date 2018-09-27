@@ -43,14 +43,14 @@
         <div id="p0">
             <p>sound effects</p>
             <label class="switch">
-                <input id="sound_effects_toggle" type="checkbox" onchange="soundEffectsToggled()">
+                <input id="sound_effects_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
                 <span class="slider"></span>
             </label>
         </div>
         <div id="p1">
             <p>music</p>
             <label class="switch">
-                <input id="music_toggle" type="checkbox" onchange="musicToggled()">
+                <input id="music_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
                 <span class="slider"></span>
             </label>
         </div>
