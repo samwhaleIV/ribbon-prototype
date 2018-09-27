@@ -355,7 +355,6 @@ function RegisterDom() {
     context = canvas.getContext("2d");
     defaultFocusElement = userLettersElements[0];
     popoutButton = document.getElementById("popout_button");
-    scoreSpan = document.getElementById("score_span");
     popout = document.getElementById("popout");
     timerBarChild = document.getElementById("timer_bar_child");
     defaultDropDownElement = document.getElementById("p0");
@@ -464,10 +463,6 @@ function SetMiddleInput(input) {
     middleInput.textContent = input;
     middleInput.classList.remove("hidden");
 }
-function SetScore(score) {
-    scoreSpan.textContent = score;
-    //todo format the score to include commas
-}
 function SetTimerBar(normalizedPercent) {
     timerBarChild.style.width = `${normalizedPercent * 100}%`;
 }
@@ -500,7 +495,6 @@ var playingMusic;
 function BeginGameRuntime() {
     updateDrawStringInput("abcdefg");
     updateUserInput("abcdefg");
-    SetScore(0);
     SetTimerBar(0);
     SetMiddleInput();
 

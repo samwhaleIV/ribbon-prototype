@@ -96,20 +96,6 @@
     top: 0%;
 }
 
-#top_bar_score {
-    font-family: sans-serif;
-    color: white;
-    float: right;
-    overflow-wrap: normal;
-    white-space: nowrap;
-    text-align: right;
-    position: relative;
-    font-size: 20px;
-    line-height: 40px;
-    height: 40px;
-    margin-right: 8px;
-}
-
 #timer_bar {
     width: calc(100% - 40px);
     height: 100%;
