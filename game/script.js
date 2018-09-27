@@ -86,9 +86,10 @@ function drawString() {
 var selectedElement = null;
 var inDropDownMenu = false;
 function SelectElement(element) {
-    if(selectedElement === element) {
-        return;
-    } else {
+    if(selectedElement !== element) {
+        if(selectedElement === element) {
+            return;
+        }
         if(selectedElement !== null) {
             selectedElement.classList.remove("selected");
             selectedElement = null;
@@ -97,6 +98,7 @@ function SelectElement(element) {
         selectedElement = element;
         console.log("Selected: " + element.id);
     }
+    hoverDidEnd = false;
 }
 function elementHoverEnd(element) {
     if(selectedElement !== null) {
@@ -131,13 +133,16 @@ function focusUp() {
                 userInterfaceClick(popoutButton);
             }
         } else {
-            var number = Number(selectedElement.id.substr(1,1)) - 1;
-            if(number < 0) {
-                userInterfaceClick(popoutButton);
+            if(selectedElement.id == "popout_button") {
+                userInterfaceClick(popoutButton,true);
             } else {
-                SelectElement(document.getElementById(`p${number}`));
+                var number = Number(selectedElement.id.substr(1,1)) - 1;
+                if(number < 0) {
+                    userInterfaceClick(popoutButton);
+                } else {
+                    SelectElement(document.getElementById(`p${number}`));
+                }
             }
-            //todo
         }
     }
 }
@@ -245,9 +250,16 @@ function userInterfaceClick(element,byMouse) {
                     }
                     break;
                 case "left_insert"://HELLO. THIS ISN'T THE REAL CODE.
+                    if(DEBUG_MIDDLE_STRING.length > 0) {
+                        playSound("erase");                        
+                    }
                     clearUserInput();
                     break;
                 case "right_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
+
+                        if(DEBUG_MIDDLE_STRING.length < 1) {
+                            return;
+                        }
                     
                         var originalRemainder = THE_OTHER_DRAW_STRING_PUN_HAHA.substr(DEBUG_MIDDLE_STRING.length,7-DEBUG_MIDDLE_STRING.length);
 
@@ -256,6 +268,8 @@ function userInterfaceClick(element,byMouse) {
                         clearUserInput();
 
                         updateDrawStringInput(newString);
+
+                        playSound("enter");
                     break;
                 default:
                     selectedElement.classList.toggle("activated");
@@ -265,6 +279,7 @@ function userInterfaceClick(element,byMouse) {
                         DEBUG_MIDDLE_STRING = DEBUG_MIDDLE_STRING.replace(selectedElement.textContent,"");
                     }
                     SetMiddleInput(DEBUG_MIDDLE_STRING);
+                    playSound("enter");
                     break;
             }
         } else {
@@ -276,8 +291,14 @@ function userInterfaceClick(element,byMouse) {
                 case "p0":
                     soundToggleElement.checked = !soundToggleElement.checked;
                     if(soundToggleElement.checked) {
+                        if(!soundToggleElement.checked) {
+                            soundToggleElement.checked = true;
+                        }
                         enableSoundEngine();
                     } else {
+                        if(soundToggleElement.checked) {
+                            soundToggleElement.checked = false;
+                        }
                         disableSoundEngine();
                     }
                     break;
@@ -294,21 +315,6 @@ function userInterfaceClick(element,byMouse) {
     }
 }
 
-//dontSave skips writing to app cache
-function disableSoundEngine(dontSave) {
-    if(soundToggleElement.checked) {
-        soundToggleElement.checked = false;
-    }
-    playingSounds = false;
-    //set in cache if !dontSave
-}
-function enableSoundEngine(dontSave) {
-    if(!soundToggleElement.checked) {
-        soundToggleElement.checked = true;
-    }
-    playingSounds = true;
-    //set in cache if !dontSave
-}
 function playMusic(dontSave) {
     if(!musicToggleElement.checked) {
         musicToggleElement.checked = true;
@@ -450,6 +456,7 @@ function SetupStuffAndDoStuffAndStuff() {
     window.addEventListener("resize",function() {
         drawString();
     });
+    musicPlayer.volume = 0.2;
     RegisterInputEvents();
     BeginGameRuntime();
 }
@@ -459,8 +466,11 @@ function SetMiddleInput(input) {
         middleInput.textContent = "";
         return;
     }
-    //todo format the text content to include dashes between letters
-    middleInput.textContent = input;
+    var modifiedInput = input.substr(0,1);
+    for(var i = 1;i<input.length;i++) {
+        modifiedInput += "-" + input.substr(i,1);
+    }
+    middleInput.textContent = modifiedInput;
     middleInput.classList.remove("hidden");
 }
 function SetTimerBar(normalizedPercent) {
@@ -472,8 +482,14 @@ function SetSoundState(musicOn,soundOn) {
     musicToggleElement.checked = playingMusic;
     soundToggleElement.checked = playingSounds;
     if(playingSounds) {
+        if(!soundToggleElement.checked) {
+            soundToggleElement.checked = true;
+        }
         enableSoundEngine(true);
     } else {
+        if(soundToggleElement.checked) {
+            soundToggleElement.checked = false;
+        }
         disableSoundEngine(true);
     }
     if(playingMusic) {
@@ -490,7 +506,6 @@ function SetSoundState(musicOn,soundOn) {
         }
     }
 }
-var playingSounds;
 var playingMusic;
 function BeginGameRuntime() {
     updateDrawStringInput("abcdefg");
@@ -500,6 +515,7 @@ function BeginGameRuntime() {
 
     //load these values from the cache
     SetSoundState(false,true);
+
     drawString();
 }
 SetupStuffAndDoStuffAndStuff();

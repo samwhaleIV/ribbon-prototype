@@ -1,7 +1,5 @@
 body {
     overflow: hidden;
-    background-color: #D18C87;
-    background-image: linear-gradient(141deg, #CBC1C5 0%, #D18C87 51%, #D49C8B 75%);
     width: 100vw;
     height: 100vh;
 }
@@ -34,4 +32,15 @@ body,html,p {
         top: calc(50vh - 50vw);
         position: absolute;
     }
+}
+
+
+body.blue {
+    background-color: #87d1d1;
+    background-image: linear-gradient(141deg, #c1c2cb 0%, #87d1d1 51%, #8ba1d4 75%);
+}
+
+body.pink {
+    background-color: #D18C87;
+    background-image: linear-gradient(141deg, #CBC1C5 0%, #D18C87 51%, #D49C8B 75%);
 }

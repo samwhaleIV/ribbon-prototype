@@ -115,6 +115,7 @@
     padding-right: 10px;
     cursor: pointer;
     font-family: "Times New Roman", Times, serif;
+    color: black;
 }
 
 #popout button {
@@ -204,28 +205,28 @@
         height: 26vh;
         top: -5vh;
     }
-    #number_bar {
-        font-size: 15vh;
-        width: 86vh;
-        height: 18vh;
-        top: 34.5vh;
-    }
     #number_bar p {
         padding-left: 1.5vh;
         padding-right: 1.5vh;
     }
     #ribbon {
-        top: 16vh;
+        top: 14vh;
         width: 100vh;
         height: 28vh;
     }
     #pending_input {
         border-bottom: 1vh solid black;
-        font-size: 10vh;
-        width: 86vh;
+        font-size: 6vh;
+        width: 95vh;
         height: 12vh;
-        top: 23vh;
+        top: 19vh;
         line-height: 11.5vh;
+    }
+    #number_bar {
+        font-size: 15vh;
+        width: 95vh;
+        height: 18vh;
+        top: 31.5vh;
     }
     #left_insert, #right_insert {
         width: 10vh;
@@ -234,6 +235,7 @@
     #middle_input {
         padding-left: 4vh;
         padding-right: 4vh;
+        height: 11vh;
     }
 }
 @media all and (orientation: portrait) {
@@ -245,29 +247,31 @@
         height: 26vw;
         top: -5vw;
     }
-    #number_bar {
-        font-size: 15vw;
-        width: 86vw;
-        height: 18vw;
-        top: 34.5vw;
-    }
+
     #number_bar p {
         padding-left: 1.5vw;
         padding-right: 1.5vw;
     }
     #ribbon {
-        top: 6vw;
+        top: 14vw;
         width: 100vw;
         height: 28vw;
     }
     #pending_input {
         border-bottom: 1vw solid black;
-        font-size: 10vw;
+        font-size: 8vw;
         width: 86vw;
         height: 12vw;
-        top: 15.5vw;
+        top: 17vw;
         line-height: 11.5vw;
     }
+    #number_bar {
+        font-size: 15vw;
+        width: 86vw;
+        height: 18vw;
+        top: 31.5vw;
+    }
+
     #left_insert, #right_insert {
         text-align: center;
         width: 10vw;
@@ -276,5 +280,6 @@
     #middle_input {
         padding-left: 4vw;
         padding-right: 4vw;
+        height: 11vw;
     }
 }

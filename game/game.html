@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <Title>Ribbon</Title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body>
+<body class="blue">
     <div id="game_square" class="justified-fullscreen-square">
         <div id="ribbon">
             <div id="ribbon_letters" class="no-select">
@@ -24,7 +25,7 @@
         </div>
         <div id="pending_input" class="no-select">
             <p id="left_insert">x</p>
-            <p id="middle_input" class="hidden"></p>
+            <p id="middle_input" class="hidden"#></p>
             <p id="right_insert">+</p>
         </div>
         <div id="number_bar">
@@ -44,14 +45,14 @@
             <p>sound effects</p>
             <label class="switch">
                 <input id="sound_effects_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider"></span>
+                <span class="slider blue"></span>
             </label>
         </div>
         <div id="p1">
             <p>music</p>
             <label class="switch">
                 <input id="music_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider"></span>
+                <span class="slider blue"></span>
             </label>
         </div>
     </div>
@@ -64,6 +65,7 @@
         </div>
     </div>
     <audio id="music_player" loop="true" preload="auto"><source src="14.mp3" type="audio/mpeg"></audio>
+    <script src="../soundengine.js"></script>
     <script src="../input/dev.js"></script>
     <script src="script.js"></script>
 </body>
