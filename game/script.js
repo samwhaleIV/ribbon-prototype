@@ -41,7 +41,10 @@ function updateUserInput(value) {
 function udsi(value) {
     updateDrawStringInput(value);
 }
+
+var THE_OTHER_DRAW_STRING_PUN_HAHA;
 function updateDrawStringInput(value) {
+    THE_OTHER_DRAW_STRING_PUN_HAHA = value;
     drawStringInput = value.split("");
     for(var i = 0;i<7;i++) {
         ribbonLettersElements[i].textContent = drawStringInput[i];
@@ -214,6 +217,16 @@ function userInterfaceBack() {
     }
 }
 
+var DEBUG_MIDDLE_STRING = "";
+
+function clearUserInput() {
+    for(var i = 0;i<7;i++) {
+        userLettersElements[i].classList.remove("activated");
+    }
+    DEBUG_MIDDLE_STRING = "";
+    SetMiddleInput();
+}
+
 function userInterfaceClick(element,byMouse) {
     if(!element) {
         element = selectedElement;
@@ -231,12 +244,27 @@ function userInterfaceClick(element,byMouse) {
                         SelectElement(defaultDropDownElement);
                     }
                     break;
-                case "left_insert":
+                case "left_insert"://HELLO. THIS ISN'T THE REAL CODE.
+                    clearUserInput();
                     break;
-                case "right_insert":
+                case "right_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
+                    
+                        var originalRemainder = THE_OTHER_DRAW_STRING_PUN_HAHA.substr(DEBUG_MIDDLE_STRING.length,7-DEBUG_MIDDLE_STRING.length);
+
+                        var newString = originalRemainder + DEBUG_MIDDLE_STRING;
+
+                        clearUserInput();
+
+                        updateDrawStringInput(newString);
                     break;
                 default:
                     selectedElement.classList.toggle("activated");
+                    if(selectedElement.classList.contains("activated")) {
+                        DEBUG_MIDDLE_STRING += selectedElement.textContent;
+                    } else {
+                        DEBUG_MIDDLE_STRING = DEBUG_MIDDLE_STRING.replace(selectedElement.textContent,"");
+                    }
+                    SetMiddleInput(DEBUG_MIDDLE_STRING);
                     break;
             }
         } else {

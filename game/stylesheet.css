@@ -183,7 +183,7 @@
     transition-property: top;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: scroll;
+    overflow-y: hidden; /* todo change maybe */
     overflow-x: hidden;
 }
 
@@ -197,10 +197,9 @@
     display: none;
 }
 
-#middle_input {
+#middle_input.hidden {
     background: none;
     box-shadow: none;
-
 }
 
 #timer_bar_child {
