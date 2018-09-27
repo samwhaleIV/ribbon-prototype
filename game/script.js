@@ -160,8 +160,6 @@ function focusDown() {
             var number = Number(selectedElement.id.substr(1,1))+1;
             if(number < dropDownItemCount) {
                 SelectElement(document.getElementById(`p${number}`));
-            } else {
-                userInterfaceClick(popoutButton);
             }
         }
     }
@@ -216,7 +214,7 @@ function userInterfaceBack() {
     }
 }
 
-function userInterfaceClick(element) {
+function userInterfaceClick(element,byMouse) {
     if(!element) {
         element = selectedElement;
     } else {
@@ -229,7 +227,9 @@ function userInterfaceClick(element) {
                 case "popout_button":
                     popout.classList.remove("hidden");
                     inDropDownMenu = true;
-                    SelectElement(defaultDropDownElement);
+                    if(!byMouse) {
+                        SelectElement(defaultDropDownElement);
+                    }
                     break;
                 case "left_insert":
                     break;
@@ -245,10 +245,24 @@ function userInterfaceClick(element) {
                     popout.classList.add("hidden");
                     inDropDownMenu = false;
                     break;
+                case "p0":
+                    soundToggleElement.checked = !soundToggleElement.checked;
+                    break;
+                case "p1":
+                    musicToggleElement.checked = !musicToggleElement.checked;
+                    break;
             }
         }
     }
 }
+function soundEffectsToggled() {
+    //todo
+}
+
+function musicToggled() {
+    //todo
+}
+
 var userLettersElements;
 var ribbonLettersElements;
 var userInput;
@@ -265,6 +279,8 @@ var scoreSpan;
 var popout;
 var timerBarChild;
 var dropDownItemCount;
+var soundToggleElement;
+var musicToggleElement;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -278,8 +294,10 @@ function RegisterDom() {
     scoreSpan = document.getElementById("score_span");
     popout = document.getElementById("popout");
     timerBarChild = document.getElementById("timer_bar_child");
-    defaultDropDownElement = document.getElementById("p0"); //todo set to first true element
+    defaultDropDownElement = document.getElementById("p0");
     dropDownItemCount = popout.childElementCount;
+    soundToggleElement = document.getElementById("sound_effects_toggle");
+    musicToggleElement = document.getElementById("music_toggle");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;
@@ -305,11 +323,28 @@ function SetupStuffAndDoStuffAndStuff() {
             });
 
             fuckYouJavascript.addEventListener("click",function() {
-                userInterfaceClick(fuckYouJavascript);
+                userInterfaceClick(fuckYouJavascript,true);
             });
 
         })(userLettersElements[i]);
 
+    }
+
+    for(var i = 0;i<dropDownItemCount;i++) {
+        (function(fuckYouJavascript) {
+
+            fuckYouJavascript.addEventListener("mouseover", function() {
+                SelectElement(fuckYouJavascript);
+            });
+            fuckYouJavascript.addEventListener("mouseout", function() {
+                elementHoverEnd(fuckYouJavascript);
+            });
+
+            fuckYouJavascript.addEventListener("click",function() {
+                userInterfaceClick(fuckYouJavascript,true);
+            });
+
+        })(popout.children[i]);     
     }
 
     leftInsert.addEventListener("mouseover",function() {
@@ -329,11 +364,11 @@ function SetupStuffAndDoStuffAndStuff() {
     });
 
     leftInsert.addEventListener("click",function() {
-        userInterfaceClick(leftInsert);
+        userInterfaceClick(leftInsert,true);
     });
 
     rightInsert.addEventListener("click",function() {
-        userInterfaceClick(rightInsert);
+        userInterfaceClick(rightInsert,true);
     });
 
     popoutButton.addEventListener("mouseout",function() {
@@ -345,7 +380,7 @@ function SetupStuffAndDoStuffAndStuff() {
     });
 
     popoutButton.addEventListener("click",function() {
-        userInterfaceClick(popoutButton);
+        userInterfaceClick(popoutButton,true);
     });
 
     BeginGameRuntime();
@@ -372,12 +407,17 @@ function SetScore(score) {
 function SetTimerBar(normalizedPercent) {
     timerBarChild.style.width = `${normalizedPercent * 100}%`;
 }
+function SetSoundState(musicOn,soundOn) {
+    musicToggleElement.checked = musicOn;
+    soundToggleElement.checked = soundOn;
+}
 function BeginGameRuntime() {
     updateDrawStringInput("abcdefg");
     updateUserInput("abcdefg");
     SetScore(0);
     SetTimerBar(0);
     SetMiddleInput();
+    SetSoundState(true,true);
     drawString();
 }
 SetupStuffAndDoStuffAndStuff();

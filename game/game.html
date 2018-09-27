@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
@@ -39,11 +40,20 @@
         </div>
     </div>
     <div id="popout" class="hidden">
-        <button id="p0">Don't click me, you'll die!</button>
-        <button id="p1">Don't click me, you'll die!</button>
-        <button id="p2">Don't click me, you'll die!</button>
-        <button id="p3">Don't click me, you'll die!</button>
-        <button id="p4">Don't click me, you'll die!</button>
+        <div id="p0">
+            <p>sound effects</p>
+            <label class="switch">
+                <input id="sound_effects_toggle" type="checkbox" onchange="soundEffectsToggled()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="p1">
+            <p>music</p>
+            <label class="switch">
+                <input id="music_toggle" type="checkbox" onchange="musicToggled()">
+                <span class="slider"></span>
+            </label>
+        </div>
     </div>
     <div id="top_bar" class="no-select">
         <div id="timer_bar">
