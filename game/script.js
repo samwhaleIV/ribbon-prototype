@@ -283,12 +283,40 @@ function userInterfaceClick(element,byMouse) {
         }
     }
 }
-function soundEffectsToggled() {
+
+//dontSave skips writing to app cache
+function disableSoundEngine(dontSave) {
     //todo
+    //set in cache
+}
+function enableSoundEngine(dontSave) {
+    //todo
+    //set in cache
+}
+function playMusic(dontSave) {
+    soundPlayer.play();
+    //set in cache
+}
+function stopMusic(dontSave) {
+    soundPlayer.pause();
+    //set in cache
+}
+function soundEffectsToggled() {
+    if(!playingSounds) {
+        enableSoundEngine();
+    } else {
+        disableSoundEngine();
+    }
+    playingSounds = !playingSounds;
 }
 
 function musicToggled() {
-    //todo
+    if(!playingMusic) {
+        musicPlayer.play();
+    } else {
+        musicPlayer.pause();
+    }
+    playingMusic = !playingMusic;
 }
 
 var userLettersElements;
@@ -309,6 +337,7 @@ var timerBarChild;
 var dropDownItemCount;
 var soundToggleElement;
 var musicToggleElement;
+var musicPlayer;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -326,6 +355,7 @@ function RegisterDom() {
     dropDownItemCount = popout.childElementCount;
     soundToggleElement = document.getElementById("sound_effects_toggle");
     musicToggleElement = document.getElementById("music_toggle");
+    musicPlayer = document.getElementById("music_player");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;
@@ -436,16 +466,33 @@ function SetTimerBar(normalizedPercent) {
     timerBarChild.style.width = `${normalizedPercent * 100}%`;
 }
 function SetSoundState(musicOn,soundOn) {
-    musicToggleElement.checked = musicOn;
-    soundToggleElement.checked = soundOn;
+    playingMusic = musicOn;
+    playingSounds = soundOn;
+    musicToggleElement.checked = playingMusic;
+    soundToggleElement.checked = playingSounds;
+    if(playingSounds) {
+        enableSoundEngine(true);
+    } else {
+        disableSoundEngine(true);
+    }
+    if(playingMusic) {
+        playMusic(true);
+    } else {
+        stopMusic(true);
+    }
 }
+var playingSounds;
+var playingMusic;
 function BeginGameRuntime() {
     updateDrawStringInput("abcdefg");
     updateUserInput("abcdefg");
     SetScore(0);
     SetTimerBar(0);
     SetMiddleInput();
-    SetSoundState(true,true);
+
+    //load these values from the cache
+    SetSoundState(false,true);
+    
     drawString();
 }
 SetupStuffAndDoStuffAndStuff();
