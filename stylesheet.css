@@ -1,0 +1,82 @@
+p#title {
+    font-family: "Earwig factory";
+    text-align: center;
+    top: 40px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    width: 100%;
+}
+
+p#title span {
+    display: inline-block;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    animation-duration: 0.3s;
+}
+
+p#title span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+p#title span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+p#title span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+p#title span:nth-child(5) {
+    animation-delay: 0.4s;
+}
+p#title span:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+p#title span:nth-child(odd) {
+    animation-name: title-transition-1;
+}
+p#title span:nth-child(even) {
+    animation-name: title-transition-2;
+}
+@keyframes title-transition-1 {
+    from {
+        transform: translateY(-110vh); 
+    }
+    to {
+        transform: translateY(0%);     
+    }
+}
+@keyframes title-transition-2 {
+    from {
+        transform: translateY(110vh);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+div#top_bar {
+    background: #000000d4;
+}
+
+p#splash_text {
+    animation: marquee 30s linear infinite;
+    font-family: sans-serif;
+    color: white;
+    font-size: 18px;
+    height: 100%;
+    line-height: 40px;
+    display: block;
+    white-space: nowrap;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media all and (orientation: portrait) {
+    p#title {
+        font-size: 20vw;
+    }
+}
+@media all and (orientation: landscape) {
+    p#title {
+        font-size: 20vh;
+    }
+}

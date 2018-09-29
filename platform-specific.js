@@ -1,3 +1,16 @@
+var storage = {
+    exists: function(key) {
+        return false;
+    },
+    set: function(key,value) {
+        return null;
+        //todo
+    },
+    get: function (key) {
+        return null;
+        //todo
+    }
+}
 var InputSchematic = {
     Up: null,
     Down: null,
