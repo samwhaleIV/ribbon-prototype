@@ -310,6 +310,9 @@ function userInterfaceClick(element,byMouse) {
                         stopMusic();
                     }
                     break;
+                case "p2":
+                    window.location.assign("../index.html");
+                    break;
             }
         }
     }

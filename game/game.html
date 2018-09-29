@@ -41,19 +41,22 @@
         </div>
     </div>
     <div id="popout" class="hidden">
-        <div id="p0">
+        <div id="p0" class="popout_ui toggle">
             <p>sound effects</p>
             <label class="switch">
                 <input id="sound_effects_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
                 <span class="slider blue"></span>
             </label>
         </div>
-        <div id="p1">
+        <div id="p1" class="popout_ui toggle">
             <p>music</p>
             <label class="switch">
                 <input id="music_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
                 <span class="slider blue"></span>
             </label>
+        </div>
+        <div id="p2" class="popout_ui">
+            <p>exit game</p>
         </div>
     </div>
     <div id="top_bar" class="no-select">
