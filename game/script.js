@@ -94,6 +94,10 @@ function SelectElement(element) {
             selectedElement.classList.remove("selected");
             selectedElement = null;
         }
+        if(element.id != "popout_button") {
+            playSound("focus");
+        }
+
         element.classList.add("selected");
         selectedElement = element;
         console.log("Selected: " + element.id);
@@ -165,6 +169,10 @@ function focusDown() {
                 SelectElement(leftInsert);
             }
         } else {
+            if(selectedElement.id =="popout_button") {
+                SelectElement(defaultDropDownElement);
+                return;
+            }
             var number = Number(selectedElement.id.substr(1,1))+1;
             if(number < dropDownItemCount) {
                 SelectElement(document.getElementById(`p${number}`));
@@ -260,6 +268,22 @@ function userInterfaceClick(element,byMouse) {
                         if(DEBUG_MIDDLE_STRING.length < 1) {
                             return;
                         }
+
+                        for(var i = 0;i<7;i++) {
+                            ribbonLettersElements[i].classList.remove("letter_transition");
+                        }
+
+                        for(var i = 6;i>7-DEBUG_MIDDLE_STRING.length-1;i--) {
+                            ribbonLettersElements[i].classList.add("letter_transition");
+                        }
+
+                        (function(length) {
+                            setTimeout(function() {
+                                for(var i = 6;i>7-length-1;i--) {
+                                    ribbonLettersElements[i].classList.remove("letter_transition");
+                                }                            
+                            },500);
+                        })(DEBUG_MIDDLE_STRING.length);
                     
                         var originalRemainder = THE_OTHER_DRAW_STRING_PUN_HAHA.substr(DEBUG_MIDDLE_STRING.length,7-DEBUG_MIDDLE_STRING.length);
 
@@ -269,7 +293,7 @@ function userInterfaceClick(element,byMouse) {
 
                         updateDrawStringInput(newString);
 
-                        playSound("enter");
+                        playSound("add");
                     break;
                 default:
                     selectedElement.classList.toggle("activated");
@@ -324,7 +348,9 @@ function playMusic(dontSave) {
     }
     playingMusic = true;
     musicPlayer.play();
-    //set in cache if !dontSave
+    if(!dontSave) {
+        storage.set("music_playing",true);
+    }
 }
 function stopMusic(dontSave) {
     if(musicToggleElement.checked) {
@@ -332,7 +358,9 @@ function stopMusic(dontSave) {
     }
     playingMusic = false;
     musicPlayer.pause();
-    //set in cache if !dontSave
+    if(!dontSave) {
+        storage.set("music_playing",false);
+    }
 }
 
 var userLettersElements;
@@ -406,15 +434,18 @@ function SetupStuffAndDoStuffAndStuff() {
     for(var i = 0;i<dropDownItemCount;i++) {
         (function(fuckYouJavascript) {
 
-            fuckYouJavascript.addEventListener("mouseover", function() {
+            fuckYouJavascript.addEventListener("mouseenter", function() {
                 SelectElement(fuckYouJavascript);
-            });
-            fuckYouJavascript.addEventListener("mouseout", function() {
-                elementHoverEnd(fuckYouJavascript);
             });
 
             fuckYouJavascript.addEventListener("click",function() {
                 userInterfaceClick(fuckYouJavascript,true);
+            });
+
+            fuckYouJavascript.addEventListener("mouseleave",function() {
+                if(!selectedElement)return;
+                selectedElement.classList.remove("selected");
+                selectedElement = null;
             });
 
         })(popout.children[i]);     
@@ -515,10 +546,10 @@ function BeginGameRuntime() {
     updateUserInput("abcdefg");
     SetTimerBar(0);
     SetMiddleInput();
-
-    //load these values from the cache
-    SetSoundState(false,true);
-
+    SetSoundState(
+        storage.get("playing_music"),
+        storage.get("playing_sounds")
+    );
     drawString();
 }
 SetupStuffAndDoStuffAndStuff();

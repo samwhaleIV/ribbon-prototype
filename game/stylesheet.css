@@ -200,6 +200,24 @@ div#top_bar {
     background-color: #00000096;
 }
 
+
+.letter_transition {
+    animation-name: drop_in;
+    animation-iteration-count: 1;
+    animation-duration: 0.25s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes drop_in {
+    from {
+        transform: translateX(50vw);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 @media all and (orientation: landscape) {
     #ribbon_letters {
         font-size: 22vh;

@@ -67,7 +67,6 @@ div#menu_buttons {
 }
 
 p#splash_text {
-    animation: marquee 30s linear infinite;
     font-family: sans-serif;
     color: white;
     font-size: medium;
@@ -77,12 +76,13 @@ p#splash_text {
     white-space: nowrap;
     font-weight: bold;
     text-align: center;
+    background-color: inherit;
 }
 
 div.menu_button {
     width: 60vw;
     height: 16vh;
-    background: #000000b3;
+    background: #ffffff2b;
     margin: auto;
     box-shadow: 0px 0px 7px #888888;
     cursor: pointer;
@@ -92,8 +92,8 @@ div.menu_button div {
     width: 100%;
     height: 72%;
     background-size: contain;
-    background-image: url("line.png");
-    background-color: black;
+    /* background-image: url("line.png"); */
+    background-color: white;
 }
 
 div.menu_button p {
@@ -101,7 +101,7 @@ div.menu_button p {
     font-size: 2.5vh;
     position: absolute;
     margin-left: 0.75vh;
-    margin-top: 0.5vh;
+    margin-top: 0.62vh;
     background: black;
     color: white;
     padding-left: 3px;
@@ -109,6 +109,10 @@ div.menu_button p {
     height: 3.3vh;
     line-height: 3.3vh;
     overflow: hidden;
+}
+
+div.menu_button.selected {
+    width: 70vw;
 }
 
 @media all and (orientation: portrait) {
@@ -122,6 +126,9 @@ div.menu_button p {
     }
     div.menu_button {
         width: 90vw;
+    }
+    div.menu_button.selected {
+        width: 95vw;
     }
 }
 @media all and (orientation: landscape) {

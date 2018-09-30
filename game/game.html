@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body class="blue">
+<body class="pink">
     <div id="game_square" class="justified-fullscreen-square">
         <div id="ribbon">
             <div id="ribbon_letters" class="no-select">
@@ -45,14 +45,14 @@
             <p>sound effects</p>
             <label class="switch">
                 <input id="sound_effects_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider blue"></span>
+                <span class="slider pink"></span>
             </label>
         </div>
         <div id="p1" class="popout_ui toggle">
             <p>music</p>
             <label class="switch">
                 <input id="music_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider blue"></span>
+                <span class="slider pink"></span>
             </label>
         </div>
         <div id="p2" class="popout_ui">
@@ -68,8 +68,8 @@
         </div>
     </div>
     <audio id="music_player" loop="true" preload="auto"><source src="14.mp3" type="audio/mpeg"></audio>
-    <script src="../soundengine.js"></script>
     <script src="../platform-specific.js"></script>
+    <script src="../soundengine.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

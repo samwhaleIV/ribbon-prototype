@@ -1,13 +1,22 @@
+var debug_values = {
+    playing_sounds: true,
+    playing_music: false
+};
+
 var storage = {
     exists: function(key) {
-        return false;
+        if(debug_values[key]) {
+            return true;
+        } else {
+            return false;
+        }
     },
     set: function(key,value) {
-        return null;
+        debug_values[key] = value;
         //todo
     },
     get: function (key) {
-        return null;
+        return debug_values[key];
         //todo
     }
 }
