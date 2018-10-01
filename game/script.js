@@ -698,12 +698,19 @@ var endTime = 60;
 var timerInterval;
 function timerTick() {
     SetTimerBar(++elapsedTime / endTime);
-    if(elapsedTime >= endTime - 10) {
+    if(elapsedTime === endTime - 10) {
+        timerBarChild.classList.add("flashing");
+        playSound("tick");
+        return;
+    }
+    if(elapsedTime > endTime - 10) {
         playSound("tick");
     }
     if(elapsedTime === endTime) {
+        timerBarChild.classList.remove("flashing");    
         clearInterval(timerInterval);
         gameEnd();
+        return;
     }
 }
 function gameEnd() {
