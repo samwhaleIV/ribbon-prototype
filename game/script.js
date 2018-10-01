@@ -100,7 +100,6 @@ function SelectElement(element) {
 
         element.classList.add("selected");
         selectedElement = element;
-        console.log("Selected: " + element.id);
     }
     hoverDidEnd = false;
 }
@@ -224,7 +223,19 @@ function userInterfaceBack() {
 }
 
 var DEBUG_MIDDLE_STRING = "";
-var alphabet = "bcdfghjklmnprstvwxyz";
+
+var alphabetRegions = [{
+        endValue: 0.5,
+        letters: "tnshrdlcm"
+    },{
+        endValue: 0.75,
+        letters: "fgypb"
+    },{
+        endValue: 1,
+        letters: "wvkjxqz"
+    }
+];
+
 var vowels = "aeiuo";
 
 var vowelCount = 0;
@@ -237,15 +248,35 @@ function generateRandomStart() {
 
 function generateNewLetters() {
     var newInputString = "";
+    var inputConsonantComposition = {}
     for(var i = 0;i<7;i++) {
         if(userLettersElements[i].classList.contains("activated")) {
             if(userLettersElements[i].classList.contains("vowel")) {
-                newInputString += vowels[Math.floor(Math.random() * vowels.length)];   
+                //repeat vowels are okay
+                newInputString += vowels[Math.floor(Math.random() * vowels.length)]; 
             } else {
-                newInputString += alphabet[Math.floor(Math.random() * alphabet.length)];     
+                var randomBucket = Math.random();
+                for(var i = 0;i<alphabetRegions.length;i++) {
+                    if(i<=alphabetRegions[i].endValue) {
+                        randomBucket = alphabetRegions[i].letters;
+                        break;
+                    }
+                }
+
+                var newIndex = Math.floor(Math.random() * randomBucket.length);
+                var newLetter = randomBucket[newIndex];
+                //this prevents repeat consonants
+                if(inputConsonantComposition[newLetter]) {
+                    newIndex = (newIndex + 1) % randomBucket.length;
+                    newLetter = randomBucket[newIndex];
+                }
+                newInputString += newLetter;
+                inputConsonantComposition[newLetter] = true;
             }
         } else {
-            newInputString += userLettersElements[i].textContent;
+            var sameLetter = userLettersElements[i].textContent;
+            newInputString += sameLetter;
+            inputConsonantComposition[sameLetter] = true;
         }
         userLettersElements[i].classList.remove("activated");
     }
@@ -279,7 +310,6 @@ function userInterfaceClick(element,byMouse) {
         SelectElement(element);
     }
     if(element) {
-        console.log("Clicked: " + element.id);
         if(!inDropDownMenu) {
             switch(element.id) {
                 case "popout_button":
@@ -298,7 +328,7 @@ function userInterfaceClick(element,byMouse) {
                 case "left_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
 
                         var lengthRequirementMatched = false;
-                        lengthRequirementMatched = DEBUG_MIDDLE_STRING.length >= 2;
+                        lengthRequirementMatched = DEBUG_MIDDLE_STRING.length >= 1;
 
                         var foundWord = null;
                         var pointsGainedString;
@@ -312,7 +342,7 @@ function userInterfaceClick(element,byMouse) {
     
                                 var word = totalString.substr(i);
                                 if(dictionary[word]) {
-                                    console.log("Found: " + word);
+                                    console.log("Found word: " + word);
                                     if(word.length <= 2) {
                                         wordTooSmall = true;
                                         break;
@@ -351,7 +381,7 @@ function userInterfaceClick(element,byMouse) {
 
                             }
                         } else {
-                            pointsGainedString = "addition too small";
+                            pointsGainedString = "missing addition";
                         }
 
                         scorePopupContent.textContent = pointsGainedString;
@@ -659,6 +689,19 @@ function SetSoundState(musicOn,soundOn) {
         }
     }
 }
+var elapsedTime = 0;
+var endTime = 60;
+var timerInterval;
+function timerTick() {
+    SetTimerBar(++elapsedTime / endTime);
+    if(elapsedTime === endTime) {
+        clearInterval(timerInterval);
+        gameEnd();
+    }
+}
+function gameEnd() {
+    console.warn("Warning: Feature not implemeneted");
+}
 var playingMusic;
 function BeginGameRuntime() {
     updateDrawStringInput(generateRandomStart());
@@ -670,5 +713,22 @@ function BeginGameRuntime() {
         storage.get("playing_sounds")
     );
     drawString();
+
+    var gameMode;
+    if(!storage.exists("game_mode")) {
+        storage.set("game_mode","timed");
+        gameMode = "timed";
+    } else {
+        gameMode = storage.get("game_mode");
+    }
+
+    switch(gameMode) {
+        case "timed":
+            timerInterval = setInterval(timerTick,1000);
+            break;
+        case "endless":
+
+            break;
+    }
 }
 SetupStuffAndDoStuffAndStuff();

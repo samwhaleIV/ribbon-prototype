@@ -1,11 +1,12 @@
 var debug_values = {
     playing_sounds: true,
-    playing_music: false
+    playing_music: false,
+    game_mode: undefined
 };
 
 var storage = {
     exists: function(key) {
-        if(debug_values[key]) {
+        if(debug_values[key] !== undefined) {
             return true;
         } else {
             return false;
