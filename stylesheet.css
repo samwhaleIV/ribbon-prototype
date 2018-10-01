@@ -99,7 +99,6 @@ div.menu_button div {
 
 div.menu_button p {
     font-family: sans-serif;
-    font-size: 19px;
     position: absolute;
     background: black;
     color: white;
@@ -107,8 +106,10 @@ div.menu_button p {
     top: 0px;
     width: 100%;
     text-align: center;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: medium;
+    font-weight: bold;
 }
 
 div.menu_button.selected {
