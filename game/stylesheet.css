@@ -144,6 +144,19 @@ div#score_popup {
     display: none;
 }
 
+p#score_counter {
+    font-family: sans-serif;
+    color: white;
+    font-size: medium;
+    height: 100%;
+    line-height: 40px;
+    display: block;
+    white-space: nowrap;
+    font-weight: bold;
+    text-align: center;
+    background-color: inherit;
+}
+
 div#score_popup p {
     font-family: sans-serif;
     color: rgb(251, 251, 251); 

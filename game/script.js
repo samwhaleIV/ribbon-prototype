@@ -224,6 +224,37 @@ function userInterfaceBack() {
 }
 
 var DEBUG_MIDDLE_STRING = "";
+var alphabet = "bcdfghjklmnprstvwxyz";
+var vowels = "aeiuo";
+
+var vowelCount = 0;
+
+var startWords = ["admires","reality","adheres","shipped","skipped","flipped"];
+
+function generateRandomStart() {
+    return startWords[Math.floor(Math.random() * startWords.length)];
+}
+
+function generateNewLetters() {
+    var newInputString = "";
+    for(var i = 0;i<7;i++) {
+        if(userLettersElements[i].classList.contains("activated")) {
+            if(userLettersElements[i].classList.contains("vowel")) {
+                newInputString += vowels[Math.floor(Math.random() * vowels.length)];   
+            } else {
+                newInputString += alphabet[Math.floor(Math.random() * alphabet.length)];     
+            }
+        } else {
+            newInputString += userLettersElements[i].textContent;
+        }
+        userLettersElements[i].classList.remove("activated");
+    }
+
+    updateUserInput(newInputString);
+
+    DEBUG_MIDDLE_STRING = "";
+    SetMiddleInput();
+}
 
 function clearUserInput() {
     for(var i = 0;i<7;i++) {
@@ -234,6 +265,12 @@ function clearUserInput() {
 }
 
 var clearAction = null;
+var addedWords = [];
+var score = 0;
+
+function updateScoreCounter() {
+    scoreCounter.textContent = `score ${score}`;
+}
 
 function userInterfaceClick(element,byMouse) {
     if(!element) {
@@ -260,19 +297,63 @@ function userInterfaceClick(element,byMouse) {
                     break;
                 case "left_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
 
-                        if(DEBUG_MIDDLE_STRING.length < 1) {
-                            return;
+                        var lengthRequirementMatched = false;
+                        lengthRequirementMatched = DEBUG_MIDDLE_STRING.length >= 2;
+
+                        var foundWord = null;
+                        var pointsGainedString;
+                        var wordTooSmall = null;
+                        
+                        if(lengthRequirementMatched) {
+                            var totalString = THE_OTHER_DRAW_STRING_PUN_HAHA + DEBUG_MIDDLE_STRING;
+                            var totalStringLength = totalString.length;
+    
+                            for(var i = 0;i<totalStringLength;i++) {
+    
+                                var word = totalString.substr(i);
+                                if(dictionary[word]) {
+                                    console.log("Found: " + word);
+                                    if(word.length <= 2) {
+                                        wordTooSmall = true;
+                                        break;
+                                    }
+                                    if(i > THE_OTHER_DRAW_STRING_PUN_HAHA.length-1) {
+                                        break;
+                                    } else {
+                                        foundWord = word;
+                                    }
+                                    break;
+                                }
+    
+                            }
+    
+                            if(foundWord !== null) {
+    
+                                var points = DEBUG_MIDDLE_STRING.length * 100;
+
+                                score += points;
+    
+                                pointsGainedString = `+${points}`;
+    
+                                addedWords.push({
+                                    word: foundWord,
+                                    score: points
+                                });
+
+                                updateScoreCounter();
+    
+                            } else {
+                                if(wordTooSmall) {
+                                    pointsGainedString = "word too small";
+                                } else {
+                                    pointsGainedString = "invalid addition";
+                                }
+
+                            }
+                        } else {
+                            pointsGainedString = "addition too small";
                         }
 
-                        for(var i = 0;i<7;i++) {
-                            ribbonLettersElements[i].classList.remove("letter_transition");
-                        }
-
-                        for(var i = 6;i>7-DEBUG_MIDDLE_STRING.length-1;i--) {
-                            ribbonLettersElements[i].classList.add("letter_transition");
-                        }
-
-                        var pointsGainedString = `+${DEBUG_MIDDLE_STRING.length * 100}`;
                         scorePopupContent.textContent = pointsGainedString;
 
                         if(clearAction === null) {
@@ -289,12 +370,25 @@ function userInterfaceClick(element,byMouse) {
                             },1000);                    
                         }
 
+                        if(foundWord === null || !lengthRequirementMatched) {
+                            clearUserInput();
+                            playSound("fail");//change to a bad, scary sound?
+                            return;
+                        }
+
+                        for(var i = 0;i<7;i++) {
+                            ribbonLettersElements[i].classList.remove("letter_transition");
+                        }
+
+                        for(var i = 6;i>7-DEBUG_MIDDLE_STRING.length-1;i--) {
+                            ribbonLettersElements[i].classList.add("letter_transition");
+                        }
+
                         (function(length) {
                             setTimeout(function() {
                                 for(var i = 6;i>7-length-1;i--) {
                                     ribbonLettersElements[i].classList.remove("letter_transition");
                                 }
-                       
                             },500);
                         })(DEBUG_MIDDLE_STRING.length);
                     
@@ -302,7 +396,7 @@ function userInterfaceClick(element,byMouse) {
 
                         var newString = originalRemainder + DEBUG_MIDDLE_STRING;
 
-                        clearUserInput();
+                        generateNewLetters();
 
                         updateDrawStringInput(newString);
 
@@ -400,6 +494,7 @@ var musicToggleElement;
 var musicPlayer;
 var scorePopup;
 var scorePopupContent;
+var scoreCounter;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -419,6 +514,7 @@ function RegisterDom() {
     musicPlayer = document.getElementById("music_player");
     scorePopup = document.getElementById("score_popup");
     scorePopupContent = document.getElementById("score_popup_content");
+    scoreCounter = document.getElementById("score_counter");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;
@@ -446,6 +542,9 @@ function SetupStuffAndDoStuffAndStuff() {
             fuckYouJavascript.addEventListener("click",function() {
                 userInterfaceClick(fuckYouJavascript,true);
             });
+
+            //this is so we can re-use a function to generate the first random letters
+            fuckYouJavascript.classList.add("activated");
 
         })(userLettersElements[i]);
 
@@ -562,8 +661,8 @@ function SetSoundState(musicOn,soundOn) {
 }
 var playingMusic;
 function BeginGameRuntime() {
-    updateDrawStringInput("abcdefg");
-    updateUserInput("abcdefg");
+    updateDrawStringInput(generateRandomStart());
+    generateNewLetters();
     SetTimerBar(0);
     SetMiddleInput();
     SetSoundState(

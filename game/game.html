@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <Title>Ribbon</Title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../base.css">
     <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="stylesheet.css">
+    <Title>Ribbon</Title>
+    <script src="../test/dictionary-test.js"></script>
 </head>
 <body class="pink">
     <div id="game_square" class="justified-fullscreen-square">
         <div id="ribbon">
             <div id="ribbon_letters" class="no-select">
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>l</p>
+                <p>o</p>
+                <p>a</p>
+                <p>d</p>
+                <p>i</p>
+                <p>n</p>
+                <p>g</p>
             </div>
             <canvas id="overlay_canvas"></canvas>
         </div>
@@ -33,13 +34,13 @@
         </div>
         <div id="number_bar">
             <div class="no-select">
-                <p id="n0"></p>
-                <p id="n1"></p>
-                <p id="n2"></p>
-                <p id="n3"></p>
-                <p id="n4"></p>
-                <p id="n5"></p>
-                <p id="n6"></p>
+                <p id="n0" class="vowel">h</p>
+                <p id="n1" class="vowel">e</p>
+                <p id="n2" class="vowel">l</p>
+                <p id="n3">l</p>
+                <p id="n4">o</p>
+                <p id="n5">:</p>
+                <p id="n6">)</p>
             </div>
         </div>
     </div>
@@ -69,6 +70,7 @@
         <div id="popout_button">
             <p>=</p>
         </div>
+        <p id="score_counter">0 points</p>
     </div>
     <audio id="music_player" loop="true" preload="auto"><source src="14.mp3" type="audio/mpeg"></audio>
     <script src="../platform-specific.js"></script>

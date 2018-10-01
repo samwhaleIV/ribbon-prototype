@@ -30,17 +30,24 @@ function playSound(name) {
             enterSound.currentTime = 0;
             enterSound.play();
             break;
+        case "fail":
+            failSound.currentTime = 0;
+            failSound.play();
+            break;
     }
 }
 var enterSound;
 var focusSound;
 var addSound;
+var failSound;
 if(window.location.pathname.split("/").indexOf("index.html") !== -1) {
     enterSound = new Audio("pluck.mp3");
     focusSound = new Audio("click.mp3");
     addSound = new Audio("add.mp3");
+    failSound = new Audio("fail.mp3");
 } else {
     enterSound = new Audio("../pluck.mp3");
     focusSound = new Audio("../click.mp3");
     addSound = new Audio("../add.mp3");
+    failSound = new Audio("../fail.mp3");
 }
