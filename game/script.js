@@ -126,11 +126,7 @@ function focusUp() {
     if(defFoc()) {
         if(!inDropDownMenu) {
             if(selectedElement.id.startsWith("n")) {
-                if(selectedElement.id.substr(1,1) <= 3) {
-                    SelectElement(leftInsert);
-                } else {
-                    SelectElement(rightInsert);
-                }
+                SelectElement(leftInsert);
             } else if(selectedElement.id.endsWith("insert")) {
                 userInterfaceClick(popoutButton);
             } else if(selectedElement.id == "popout_button") {
@@ -164,9 +160,6 @@ function focusDown() {
                 case "right_insert":
                     SelectElement(document.getElementById("n6"));
                     break;
-            }
-            if(selectedElement.id == "popout_button") {
-                SelectElement(leftInsert);
             }
         } else {
             if(selectedElement.id =="popout_button") {
@@ -259,13 +252,13 @@ function userInterfaceClick(element,byMouse) {
                         SelectElement(defaultDropDownElement);
                     }
                     break;
-                case "left_insert"://HELLO. THIS ISN'T THE REAL CODE.
+                case "right_insert"://HELLO. THIS ISN'T THE REAL CODE.
                     if(DEBUG_MIDDLE_STRING.length > 0) {
                         playSound("erase");                        
                     }
                     clearUserInput();
                     break;
-                case "right_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
+                case "left_insert"://SERIOUSLY YOU FUCKING BITCH DON'T YOU DARE CONSIDER USING THIS AS THE REAL CODE >:+(
 
                         if(DEBUG_MIDDLE_STRING.length < 1) {
                             return;
@@ -331,6 +324,9 @@ function userInterfaceClick(element,byMouse) {
                 case "popout_button":
                     popout.classList.add("hidden");
                     inDropDownMenu = false;
+                    if(!byMouse) {
+                        SelectElement(leftInsert);
+                    }
                     break;
                 case "p0":
                     soundToggleElement.checked = !soundToggleElement.checked;
