@@ -240,6 +240,8 @@ function clearUserInput() {
     SetMiddleInput();
 }
 
+var clearAction = null;
+
 function userInterfaceClick(element,byMouse) {
     if(!element) {
         element = selectedElement;
@@ -277,11 +279,29 @@ function userInterfaceClick(element,byMouse) {
                             ribbonLettersElements[i].classList.add("letter_transition");
                         }
 
+                        var pointsGainedString = `+${DEBUG_MIDDLE_STRING.length * 100}`;
+                        scorePopupContent.textContent = pointsGainedString;
+
+                        if(clearAction === null) {
+                            scorePopup.classList.add("shown");
+                            clearAction = setTimeout(function() {
+                                scorePopup.classList.remove("shown");
+                                clearAction = null;
+                            },800);
+                        } else {
+                            clearTimeout(clearAction);
+                            clearAction = setTimeout(function() {
+                                scorePopup.classList.remove("shown"); 
+                                clearAction = null;
+                            },800);                    
+                        }
+
                         (function(length) {
                             setTimeout(function() {
                                 for(var i = 6;i>7-length-1;i--) {
                                     ribbonLettersElements[i].classList.remove("letter_transition");
-                                }                            
+                                }
+                       
                             },500);
                         })(DEBUG_MIDDLE_STRING.length);
                     
@@ -382,6 +402,8 @@ var dropDownItemCount;
 var soundToggleElement;
 var musicToggleElement;
 var musicPlayer;
+var scorePopup;
+var scorePopupContent;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -399,6 +421,8 @@ function RegisterDom() {
     soundToggleElement = document.getElementById("sound_effects_toggle");
     musicToggleElement = document.getElementById("music_toggle");
     musicPlayer = document.getElementById("music_player");
+    scorePopup = document.getElementById("score_popup");
+    scorePopupContent = document.getElementById("score_popup_content");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;

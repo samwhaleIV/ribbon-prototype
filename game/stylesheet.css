@@ -138,6 +138,27 @@
     cursor: pointer;
 }
 
+div#score_popup {
+    position: absolute;
+    z-index: -1;
+    display: none;
+}
+
+div#score_popup p {
+    font-family: sans-serif;
+    color: rgb(251, 251, 251); 
+    background: rgba(0, 0, 0, 0.75);
+    text-align: center;
+}
+
+div#score_popup.shown {
+    animation-iteration-count: 1;
+    animation-duration: 0.25s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    display: block;
+}
+
 #popout .popout_ui p {
     font-family: sans-serif;
     float: left;
@@ -218,6 +239,24 @@ div#top_bar {
     }
 }
 
+@keyframes show_score_landscape {
+    from {
+        top: 23vh;
+    }
+    to {
+        top: 39vh;
+    }
+}
+
+@keyframes show_score_portrait {
+    from {
+        top: 23vw;;
+    }
+    to {
+        top: 4vw;
+    }
+}
+
 @media all and (orientation: landscape) {
     #ribbon_letters {
         font-size: 22vh;
@@ -259,6 +298,20 @@ div#top_bar {
         padding-right: 4vh;
         height: 11vh;
     }
+
+    div#score_popup {
+        width: 100vh;
+    }
+
+    div#score_popup.shown {
+        animation-name: show_score_landscape;
+    }
+    
+    div#score_popup p { 
+        font-size: 5vh;      
+        width: 100%;
+    }
+
 }
 @media all and (orientation: portrait) {
     #ribbon_letters {
@@ -303,5 +356,19 @@ div#top_bar {
         padding-left: 4vw;
         padding-right: 4vw;
         height: 11vw;
+    }
+
+    div#score_popup {
+        width: 100vw;
+        left: 0vw;
+    }
+
+    div#score_popup.shown {
+        animation-name: show_score_portrait;
+    }
+    
+    div#score_popup p {
+        font-size: 5vw;        
+        width: 100vw;
     }
 }
