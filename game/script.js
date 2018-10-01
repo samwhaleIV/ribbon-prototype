@@ -224,15 +224,19 @@ function userInterfaceBack() {
 
 var DEBUG_MIDDLE_STRING = "";
 
+function getScore(wordLength,lettersUsed) {
+    return ((wordLength - lettersUsed) * 25) + (lettersUsed * 50);
+}
+
 var alphabetRegions = [{
-        endValue: 0.5,
-        letters: "tnshrdlcm"
+        endValue: 0.7,
+        letters: "tnshrd"
     },{
-        endValue: 0.75,
-        letters: "fgypb"
+        endValue: 0.9,
+        letters: "fgpbcml"
     },{
         endValue: 1,
-        letters: "wvkjxqz"
+        letters: "wkjy"
     }
 ];
 
@@ -256,9 +260,9 @@ function generateNewLetters() {
                 newInputString += vowels[Math.floor(Math.random() * vowels.length)]; 
             } else {
                 var randomBucket = Math.random();
-                for(var i = 0;i<alphabetRegions.length;i++) {
-                    if(i<=alphabetRegions[i].endValue) {
-                        randomBucket = alphabetRegions[i].letters;
+                for(var shadow_i = 0;shadow_i<alphabetRegions.length;shadow_i++) {
+                    if(randomBucket<=alphabetRegions[shadow_i].endValue) {
+                        randomBucket = alphabetRegions[shadow_i].letters;
                         break;
                     }
                 }
@@ -359,7 +363,7 @@ function userInterfaceClick(element,byMouse) {
     
                             if(foundWord !== null) {
     
-                                var points = DEBUG_MIDDLE_STRING.length * 100;
+                                var points = getScore(foundWord.length,DEBUG_MIDDLE_STRING.length);
 
                                 score += points;
     
@@ -694,6 +698,9 @@ var endTime = 60;
 var timerInterval;
 function timerTick() {
     SetTimerBar(++elapsedTime / endTime);
+    if(elapsedTime >= endTime - 10) {
+        playSound("tick");
+    }
     if(elapsedTime === endTime) {
         clearInterval(timerInterval);
         gameEnd();
@@ -701,6 +708,12 @@ function timerTick() {
 }
 function gameEnd() {
     console.warn("Warning: Feature not implemeneted");
+    if(storage.exists("highscore")) {
+        if(storage.get("highscore") > score) {
+            storage.set("highscore",score);
+        }
+    }
+    //use addedWords
 }
 var playingMusic;
 function BeginGameRuntime() {

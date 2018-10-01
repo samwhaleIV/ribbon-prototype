@@ -114,4 +114,6 @@ RegisterInputEvents();
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
 }
-
+if(storage.exists("highscore")) {
+    document.getElementById("splash_text").textContent = `high score ${storage.get("highscore")}`;
+}

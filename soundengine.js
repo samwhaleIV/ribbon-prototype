@@ -34,20 +34,27 @@ function playSound(name) {
             failSound.currentTime = 0;
             failSound.play();
             break;
+        case "tick":
+            tickSound.currentTime = 0;
+            tickSound.play();
+            break;
     }
 }
 var enterSound;
 var focusSound;
 var addSound;
 var failSound;
+var tickSound;
 if(window.location.pathname.split("/").indexOf("index.html") !== -1) {
     enterSound = new Audio("pluck.mp3");
     focusSound = new Audio("click.mp3");
     addSound = new Audio("add.mp3");
     failSound = new Audio("fail.mp3");
+    tickSound = new Audio("tick.mp3");
 } else {
     enterSound = new Audio("../pluck.mp3");
     focusSound = new Audio("../click.mp3");
     addSound = new Audio("../add.mp3");
     failSound = new Audio("../fail.mp3");
+    tickSound = new Audio("../tick.mp3");
 }
