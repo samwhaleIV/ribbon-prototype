@@ -287,13 +287,13 @@ function userInterfaceClick(element,byMouse) {
                             clearAction = setTimeout(function() {
                                 scorePopup.classList.remove("shown");
                                 clearAction = null;
-                            },800);
+                            },1000);
                         } else {
                             clearTimeout(clearAction);
                             clearAction = setTimeout(function() {
                                 scorePopup.classList.remove("shown"); 
                                 clearAction = null;
-                            },800);                    
+                            },1000);                    
                         }
 
                         (function(length) {
