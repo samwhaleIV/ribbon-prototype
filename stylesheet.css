@@ -86,11 +86,12 @@ div.menu_button {
     margin: auto;
     box-shadow: 0px 0px 7px #888888;
     cursor: pointer;
+    position: relative;
 }
 
 div.menu_button div {
     width: 100%;
-    height: 72%;
+    height: 100%;
     background-size: contain;
     /* background-image: url("line.png"); */
     background-color: white;
@@ -98,17 +99,16 @@ div.menu_button div {
 
 div.menu_button p {
     font-family: sans-serif;
-    font-size: 2.5vh;
+    font-size: 19px;
     position: absolute;
-    margin-left: 0.75vh;
-    margin-top: 0.62vh;
     background: black;
     color: white;
-    padding-left: 3px;
-    padding-right: 5px;
-    height: 3.3vh;
-    line-height: 3.3vh;
     overflow: hidden;
+    top: 0px;
+    width: 100%;
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 div.menu_button.selected {

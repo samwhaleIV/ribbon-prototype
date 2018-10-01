@@ -250,7 +250,7 @@ div#top_bar {
 
 @keyframes show_score_portrait {
     from {
-        top: 23vw;;
+        top: 23vw;
     }
     to {
         top: 4vw;
@@ -301,6 +301,7 @@ div#top_bar {
 
     div#score_popup {
         width: 100vh;
+        top: 23vh;
     }
 
     div#score_popup.shown {
@@ -361,6 +362,7 @@ div#top_bar {
     div#score_popup {
         width: 100vw;
         left: 0vw;
+        top: 23vw;
     }
 
     div#score_popup.shown {
