@@ -787,12 +787,12 @@ var endTime = 60;
 var timerInterval;
 function timerTick() {
     SetTimerBar(++elapsedTime / endTime);
-    if(elapsedTime === endTime - 9) {
+    if(elapsedTime === endTime - 8) {
         timerBarChild.classList.add("flashing");
         playSound("tick");
         return;
     }
-    if(elapsedTime > endTime - 9) {
+    if(elapsedTime > endTime - 8) {
         playSound("tick");
     }
     if(elapsedTime === endTime + 1) {
