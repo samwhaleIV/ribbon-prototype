@@ -812,6 +812,8 @@ function keepPlaying() {
     gameSquare.classList.remove("hidden");
     endScreen.classList.add("hidden");
     popoutButton.classList.remove("hidden");
+    keepPlayingButton.classList.remove("selected");
+    selectedElement = null;
     scoreCounter.textContent = "0 points";
     score = 0;
     onGameEndScreen = false;
@@ -854,21 +856,20 @@ function gameEnd() {
 
     if(addedWords.length < 1) {
         addedWords.push({
-            word: "no words made :(",
-            score: 0
+            word: "no words made",
+            score: "): no points earned"
         });
-    } else {
-        for(var i = 0;i<addedWords.length;i++) {
-            endScreenContent.appendChild(
-                document.createElement("div").appendChild(
-                    document.createElement("p").appendChild(
-                        document.createTextNode(addedWords[i].word)
-                    ).parentElement).parentElement.appendChild(
-                    document.createElement("p").appendChild(
-                        document.createTextNode(addedWords[i].score)
-                    ).parentElement).parentElement
-            );
-        }
+    }
+    for(var i = 0;i<addedWords.length;i++) {
+        endScreenContent.appendChild(
+            document.createElement("div").appendChild(
+                document.createElement("p").appendChild(
+                    document.createTextNode(addedWords[i].word)
+                ).parentElement).parentElement.appendChild(
+                document.createElement("p").appendChild(
+                    document.createTextNode(addedWords[i].score)
+                ).parentElement).parentElement
+        );
     }
     totalPointsElement.textContent = `total: ${score} points`;
     SetTimerBar(0);
