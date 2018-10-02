@@ -25,8 +25,9 @@ function playSound(name) {
             focusSound.currentTime = 0;
             focusSound.play();
             break;
+        case "pluck":
         case "enter":
-        case "erase":
+        case "erase"://todo seperate the erase case
             enterSound.currentTime = 0;
             enterSound.play();
             break;

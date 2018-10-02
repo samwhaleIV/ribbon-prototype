@@ -58,13 +58,10 @@ function userInterfaceClick() {
             window.location.assign("game/game.html");
             break;
         case "stats_button":
-
             break;
         case "store_button":
-
             break;
         case "about_button":
-
             break;
     }
 }
