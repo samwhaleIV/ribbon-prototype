@@ -517,14 +517,8 @@ function userInterfaceClick(element,byMouse) {
                     case "p0":
                         soundToggleElement.checked = !soundToggleElement.checked;
                         if(soundToggleElement.checked) {
-                            if(!soundToggleElement.checked) {
-                                soundToggleElement.checked = true;
-                            }
                             enableSoundEngine();
                         } else {
-                            if(soundToggleElement.checked) {
-                                soundToggleElement.checked = false;
-                            }
                             disableSoundEngine();
                         }
                         break;
@@ -761,7 +755,6 @@ function SetSoundState(musicOn,soundOn) {
     playingMusic = musicOn;
     playingSounds = soundOn;
     musicToggleElement.checked = playingMusic;
-    soundToggleElement.checked = playingSounds;
     if(playingSounds) {
         if(!soundToggleElement.checked) {
             soundToggleElement.checked = true;
