@@ -829,6 +829,9 @@ function gameEnd() {
     }
     clearUserInput();
     onGameEndScreen = true;
+    if(selectedElement !== null) {
+        selectedElement.classList.remove("selected");
+    }
     selectedElement = null;
     if(inDropDownMenu) {
         popout.classList.add("hidden");
