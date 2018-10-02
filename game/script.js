@@ -586,6 +586,7 @@ var gameSquare;
 var totalPointsElement;
 var keepPlayingButton;
 var stopHereButton;
+var endScreenContent;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -611,6 +612,7 @@ function RegisterDom() {
     totalPointsElement = document.getElementById("total_points_element");
     keepPlayingButton = document.getElementById("keep_playing_button");
     stopHereButton = document.getElementById("stop_here_button");
+    endScreenContent = document.getElementById("end_screen_content");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;
@@ -843,10 +845,8 @@ function gameEnd() {
     endScreen.classList.remove("hidden");
     gameSquare.classList.add("hidden");
 
-    var endScreenContent = endScreen.children[0];
-
     for(var i = 1;i<endScreenContent.children.length;i++) {
-        endScreenContent.remove(endScreenContent.children[i]);
+        endScreenContent.children[i].remove();
     }
 
     if(addedWords.length < 1) {
