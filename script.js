@@ -113,6 +113,7 @@ for(var i = 0;i<menuButtons.children.length;i++) {
 RegisterInputEvents();
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
+    playSound("add");
 }
 if(storage.exists("highscore")) {
     document.getElementById("splash_text").textContent = `high score ${storage.get("highscore")}`;

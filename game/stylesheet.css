@@ -22,7 +22,7 @@
     display: flex;
     font-family: "earwig factory";
     color: white;
-    background-color: #000000;
+    background-color: black;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
@@ -293,7 +293,7 @@ div#score_popup.shown {
     background-color: #e2e2e2;
 }
 div#top_bar {
-    background: #00000070;
+    background: rgba(0, 0, 0, 0.44);
 }
 #popout {
     top: 40px;
@@ -329,7 +329,7 @@ div#top_bar {
     position: relative;
     height: 100%;
     width: 0%;
-    background-color: #00000096;
+    background-color: rgba(0, 0, 0, 0.588);
 }
 #timer_bar_child.pink {
     background-color: rgba(255, 185, 185, 0.9);
