@@ -471,7 +471,7 @@ function userInterfaceClick(element,byMouse) {
                     keepPlaying();
                     playSound("pluck");
                     break;
-                case "keep_playing_button":
+                case "stop_here_button":
                     window.location.assign("../index.html");
                     playSound("pluck");
                     break;
@@ -820,7 +820,7 @@ function keepPlaying() {
         userLettersElements[i].classList.add("activated");
     }
     generateNewLetters();
-    GenerateNewStart();
+    generateRandomStart();
     elapsedTime = 0;
     startTimer();
 }
@@ -895,7 +895,6 @@ function BeginGameRuntime() {
     } else {
         gameMode = storage.get("game_mode");
     }
-
     switch(gameMode) {
         case "timed":
             startTimer();
