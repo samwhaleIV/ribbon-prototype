@@ -815,7 +815,6 @@ function keepPlaying() {
         userLettersElements[i].classList.add("activated");
     }
     generateNewLetters();
-    generateRandomStart();
     elapsedTime = 0;
     startTimer();
 }
