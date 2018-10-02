@@ -1,6 +1,6 @@
 var debug_values = {
     playing_sounds: true,
-    playing_music: true,
+    playing_music: false,
     game_mode: undefined
 };
 

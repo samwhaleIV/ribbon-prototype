@@ -455,7 +455,7 @@ var addedWords = [];
 var score = 0;
 
 function updateScoreCounter() {
-    scoreCounter.textContent = `score ${score}`;
+    scoreCounter.textContent = `Score ${score}`;
 }
 
 function userInterfaceClick(element,byMouse) {
@@ -823,7 +823,6 @@ function keepPlaying() {
 
 
 function gameEnd() {
-    console.warn("Warning: Feature not fully implemeneted");
     if(storage.exists("highscore")) {
         if(storage.get("highscore") > score) {
             storage.set("highscore",score);
@@ -840,7 +839,7 @@ function gameEnd() {
         inDropDownMenu = false;
     }
 
-    scoreCounter.textContent = "round over";
+    scoreCounter.textContent = "Round over";
     popoutButton.classList.add("hidden");
     endScreen.classList.remove("hidden");
     gameSquare.classList.add("hidden");

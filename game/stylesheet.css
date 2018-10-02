@@ -217,9 +217,9 @@ div#end_screen table {
 .end_screen_button p {
     display: inline-block;
     background-color: rgb(0, 0, 0);
-    padding-left: 8px;
+    padding-left: 20px;
     margin: 8px;
-    padding-right: 8px;
+    padding-right: 20px;
     color: white;
     white-space: nowrap;
 }
@@ -263,7 +263,6 @@ div#score_popup.shown {
     font-family: sans-serif;
     float: left;
     font-size: 20px;
-    line-height: 40px;
     height: 40px;
     margin-left: 10px;
     text-align: left;
