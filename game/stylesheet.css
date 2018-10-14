@@ -154,12 +154,12 @@ div#end_screen {
     font-family: sans-serif;
     color: white;
     font-size: 22px;
-    line-height: 8vh;
+    line-height: 60px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 div#end_screen div#bottom {
-    height: 8vh;
+    height: 60px;
     width: 100vw;
     background-color: white;
     color: black;
@@ -167,7 +167,7 @@ div#end_screen div#bottom {
     text-align: center;
 }
 div#end_screen div div {
-    height: 8vh;
+    height: 60px;
 }
 div#end_screen div div:nth-child(1) {
     font-weight: bold;
@@ -291,15 +291,12 @@ div#top_bar {
     background: white;
     box-shadow: inset 0px 0px 4px 0px #616161;
     display: block;
-    transition-property: top;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: hidden; /* todo change maybe */
     overflow-x: hidden;
 }
 
 #popout.hidden {
-    top: -100vh;
+    display: none;
 }
 
 .hidden {

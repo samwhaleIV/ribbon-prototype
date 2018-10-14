@@ -866,6 +866,7 @@ function gameEnd() {
         );
     }
     totalPointsElement.textContent = `total: ${score} points`;
+    stopHereButton.scrollIntoView();
     SetTimerBar(0);
 }
 function startTimer() {
