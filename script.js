@@ -113,5 +113,5 @@ if(storage.get("playing_sounds")) {
     playSound("add");
 }
 if(storage.exists("highscore")) {
-    document.getElementById("splash_text").textContent = `high score ${storage.get("highscore")}`;
+    document.getElementById("high_score").textContent = `High score: ${storage.get("highscore")} points`;
 }
