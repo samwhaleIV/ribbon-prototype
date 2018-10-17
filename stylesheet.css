@@ -54,29 +54,11 @@ p#title span:nth-child(even) {
         transform: translateY(0%);
     }
 }
-div#top_bar {
-    background: rgba(0, 0, 0, 0.83);
-}
-
-
 div#menu_buttons {
     position: absolute;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-}
-
-p#splash_text {
-    font-family: sans-serif;
-    color: white;
-    font-size: medium;
-    height: 100%;
-    line-height: 40px;
-    display: block;
-    white-space: nowrap;
-    font-weight: bold;
-    text-align: center;
-    background-color: inherit;
 }
 
 div.menu_button {

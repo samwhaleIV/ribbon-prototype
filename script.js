@@ -60,6 +60,7 @@ function userInterfaceClick() {
         case "stats_button":
             break;
         case "store_button":
+            window.location.assign("store/store.html");
             break;
         case "about_button":
             break;
@@ -114,4 +115,10 @@ if(storage.get("playing_sounds")) {
 }
 if(storage.exists("highscore")) {
     document.getElementById("high_score").textContent = `High score: ${storage.get("highscore")} points`;
+}
+if(storage.exists("coins")) {
+    var coins = storage.get("coins");
+    document.getElementById("coins_counter").textContent = `${coins} coin${coins != 1 ? "s" : ""}`
+} else {
+    storage.set("coins",0);
 }

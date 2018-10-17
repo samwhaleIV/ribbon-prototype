@@ -1,0 +1,24 @@
+div#store_items {
+    height: calc(100% - 40px);
+    width: 100%;
+    position: absolute;
+    top: 40px;
+}
+div.store_item {
+
+}
+div.store_item img {
+
+}
+div.store_item p.cost {
+
+}
+div.store_item p.description {
+
+}
+div.store_item p.description span.quantity {
+
+}
+div.store_item p.owned {
+
+}

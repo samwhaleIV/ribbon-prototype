@@ -95,22 +95,6 @@
     left: 40px;
 }
 
-#popout_button {
-    position: fixed;
-    background-color: white;
-    height: 40px;
-    width: 40px;
-    z-index: 3;
-}
-#popout_button p {
-    font-size: 35px;
-    padding-left: 10px;
-    padding-right: 10px;
-    cursor: pointer;
-    font-family: "Times New Roman", Times, serif;
-    color: black;
-}
-
 #popout button {
     padding: 12%;
     width: 95%;
