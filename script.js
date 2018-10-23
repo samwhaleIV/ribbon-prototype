@@ -108,7 +108,10 @@ for(var i = 0;i<menuButtons.children.length;i++) {
 
     })(menuButtons.children[i]);  
 }
-RegisterInputEvents();
+if(storage.get("blue_theme")) {
+    document.body.classList.remove("pink");
+    document.body.classList.add("blue");
+}
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
     playSound("add");
@@ -122,3 +125,4 @@ if(storage.exists("coins")) {
 } else {
     storage.set("coins",0);
 }
+RegisterInputEvents();

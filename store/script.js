@@ -56,7 +56,7 @@ function updateOwnedScissors() {
 function updateOwnedColors() {
     if(storage.exists("owns_colors")) {
         StoreItem3.classList.add("purchased");
-        ownsColorsElement.textContent = PurchasedText;
+        ownsColorsElement.textContent = "Toggle";
     } else {
         StoreItem3.classList.remove("purchased");
         ownsColorsElement.textContent = NotPurchasedText;
@@ -127,9 +127,25 @@ function PurchaseScissors() {
         playSound("fail");
     }
 }
+function updateTheme(isBlue) {
+    if(isBlue) {
+        document.body.classList.remove("pink");
+        document.body.classList.add("blue");
+    } else {
+        document.body.classList.remove("blue");
+        document.body.classList.add("pink");
+    }
+}
 function PurchaseColors() {
     if(storage.get("owns_colors")) {
-        playSound("fail");
+        if(storage.get("blue_theme")) {
+            storage.set("blue_theme",false);
+            updateTheme(false);
+        } else {
+            storage.set("blue_theme",true);
+            updateTheme(true);
+        }
+        playSound("enter");
         return;
     }
     let coins = storage.get("coins");
@@ -269,6 +285,9 @@ function RegisterInputEvents() {
 });
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
+}
+if(storage.get("blue_theme")) {
+    updateTheme(true);
 }
 updateCoinsText();
 updateOnInventory();

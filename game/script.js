@@ -624,6 +624,21 @@ function RegisterInputEvents() {
 }
 function SetupStuffAndDoStuffAndStuff() {
 
+    if(storage.get("blue_theme")) {
+        document.body.classList.remove("pink");
+        document.body.classList.add("blue");
+        timerBarChild.classList.remove("pink");
+        timerBarChild.classList.add("blue");
+
+        const slider1 = document.getElementById("Slider1");
+        const slider2 = document.getElementById("Slider2");
+
+        slider1.classList.remove("pink");
+        slider1.classList.add("blue");
+        slider2.classList.remove("pink");
+        slider2.classList.add("blue");
+    }
+
     RegisterDom();
 
     for(var i = 0;i<7;i++) {

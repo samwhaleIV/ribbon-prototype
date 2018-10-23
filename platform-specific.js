@@ -1,9 +1,14 @@
 var debug_values = {
+    highscore: 0,
+    playing_music: true,
     playing_sounds: true,
-    playing_music: false,
-    game_mode: undefined
+    coins: 0,
+    owned_scramblers: 0,
+    owned_scissors: 0,
+    owns_colors: true,
+    owns_grocery_king: false,
+    blue_theme: false
 };
-
 var storage = {
     exists: function(key) {
         if(debug_values[key] !== undefined) {
