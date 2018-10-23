@@ -871,8 +871,10 @@ function gameEnd() {
         let coins = storage.get("coins");
         if(!coins) {
             coins = 0;
+        } else {
+            coins = Number(coins);
         }
-        let newCoins = Math.floor(score / 100);
+        let newCoins = Math.floor(score / 50);
         if(newCoins > 0) {
             if(newCoins === 1) {
                 addedWords.push({

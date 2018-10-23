@@ -96,7 +96,7 @@ function PurchaseScramblers() {
         if(!scramblers) {
             scramblers = ScramblersCount;
         } else {
-            scramblers += ScramblersCount;
+            scramblers = Number(scramblers) + ScramblersCost;
         }
         storage.set("owned_scramblers",scramblers);
         coins -= ScramblersCost;
@@ -115,7 +115,7 @@ function PurchaseScissors() {
         if(!scissors) {
             scissors = ScissorsCount;
         } else {
-            scissors += ScissorsCount;
+            scissors = Number(scissors) + ScissorsCount;
         }
         storage.set("owned_scissors",scissors);
         coins -= ScissorsCost;
