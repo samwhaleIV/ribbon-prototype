@@ -96,7 +96,7 @@ function PurchaseScramblers() {
         if(!scramblers) {
             scramblers = ScramblersCount;
         } else {
-            scramblers = Number(scramblers) + ScramblersCost;
+            scramblers = Number(scramblers) + ScramblersCount;
         }
         storage.set("owned_scramblers",scramblers);
         coins -= ScramblersCost;
