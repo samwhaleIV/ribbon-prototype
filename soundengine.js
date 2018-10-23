@@ -46,7 +46,11 @@ var focusSound;
 var addSound;
 var failSound;
 var tickSound;
-if(window.location.pathname.split("/").indexOf("index.html") !== -1) {
+var pathname = window.location.pathname;
+if(pathname.substr(pathname.length-1,1) == "/") {
+    pathname += "index.html";
+}
+if(pathname.substr(pathname.length-10,10) === "index.html") {
     enterSound = new Audio("pluck.mp3");
     focusSound = new Audio("click.mp3");
     addSound = new Audio("add.mp3");

@@ -876,13 +876,13 @@ function gameEnd() {
         if(newCoins > 0) {
             if(newCoins === 1) {
                 addedWords.push({
-                    word: "earned a coin",
-                    score: "Really? Just 1?"
+                    word: "+1",
+                    score: "coin"
                 });  
             } else {
                 addedWords.push({
-                    word: "earned coins",
-                    score: `+${newCoins}`
+                    word: `+${newCoins}`,
+                    score: "coins"
                 });    
             }
             coins += newCoins;
