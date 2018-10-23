@@ -827,6 +827,8 @@ function gameEnd() {
         if(storage.get("highscore") > score) {
             storage.set("highscore",score);
         }
+    } else {
+        storage.set("highscore",score);
     }
     clearUserInput();
     onGameEndScreen = true;
@@ -883,21 +885,6 @@ function BeginGameRuntime() {
         storage.get("playing_sounds")
     );
     drawString();
-
-    var gameMode;
-    if(!storage.exists("game_mode")) {
-        storage.set("game_mode","timed");
-        gameMode = "timed";
-    } else {
-        gameMode = storage.get("game_mode");
-    }
-    switch(gameMode) {
-        case "timed":
-            startTimer();
-            break;
-        case "endless":
-
-            break;
-    }
+    startTimer();
 }
 SetupStuffAndDoStuffAndStuff();
