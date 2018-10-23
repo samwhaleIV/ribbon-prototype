@@ -855,21 +855,39 @@ function gameEnd() {
         popout.classList.add("hidden");
         inDropDownMenu = false;
     }
-
     scoreCounter.textContent = "Round over";
     popoutButton.classList.add("hidden");
     endScreen.classList.remove("hidden");
     gameSquare.classList.add("hidden");
-
     for(var i = 1;i<endScreenContent.children.length;i++) {
         endScreenContent.children[i].remove();
     }
-
     if(addedWords.length < 1) {
         addedWords.push({
             word: "no words made",
             score: "): no points earned"
         });
+    } else {
+        let coins = storage.get("coins");
+        if(!coins) {
+            coins = 0;
+        }
+        let newCoins = Math.floor(score / 100);
+        if(newCoins > 0) {
+            if(newCoins === 1) {
+                addedWords.push({
+                    word: "earned a coin",
+                    score: "Really? Just 1?"
+                });  
+            } else {
+                addedWords.push({
+                    word: "earned coins",
+                    score: `+${newCoins}`
+                });    
+            }
+            coins += newCoins;
+            storage.set("coins",coins);
+        }    
     }
     for(var i = 0;i<addedWords.length;i++) {
         endScreenContent.appendChild(
