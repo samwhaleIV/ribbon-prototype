@@ -1,30 +1,44 @@
-var debug_values = {
-    highscore: 0,
-    playing_music: true,
-    playing_sounds: true,
-    coins: 0,
-    owned_scramblers: 0,
-    owned_scissors: 0,
-    owns_colors: true,
-    owns_grocery_king: false,
-    blue_theme: false
-};
+if(!localStorage.getItem("coins")) {
+    //sets the default values
+    localStorage.setItem("highscore",0);
+    localStorage.setItem("playing_music",true);
+    localStorage.setItem("playing_sounds",true);
+    localStorage.setItem("coins",0);
+    localStorage.setItem("owned_scramblers",0);
+    localStorage.setItem("owned_scissors",0);
+    localStorage.setItem("owns_colors",false);
+    localStorage.setItem("owns_grocery_king",false);
+    localStorage.setItem("blue_theme",false);
+}
 var storage = {
-    exists: function(key) {
-        if(debug_values[key] !== undefined) {
-            return true;
-        } else {
-            return false;
-        }
-    },
     set: function(key,value) {
-        debug_values[key] = value;
-        //todo
+        localStorage.setItem(key,value);
     },
     get: function (key) {
-        return debug_values[key];
-        //todo
-    }
+        var value = localStorage.getItem(key);
+        switch(value) {
+            case "true":
+                return true;
+            case "false":
+                return false;
+            default:
+                if(value === null) {
+                    return false;
+                } else {
+                    return value;
+                }
+        }
+    },
+    exists: function(key) {
+        switch(storage.get(key)) {
+            case true:
+                return true;
+            case false:
+                return false;
+            default:
+                return true;
+        }
+    },
 }
 var InputSchematic = {
     Up: null,

@@ -624,6 +624,8 @@ function RegisterInputEvents() {
 }
 function SetupStuffAndDoStuffAndStuff() {
 
+    RegisterDom();
+
     if(storage.get("blue_theme")) {
         document.body.classList.remove("pink");
         document.body.classList.add("blue");
@@ -638,8 +640,6 @@ function SetupStuffAndDoStuffAndStuff() {
         slider2.classList.remove("pink");
         slider2.classList.add("blue");
     }
-
-    RegisterDom();
 
     for(var i = 0;i<7;i++) {
 
