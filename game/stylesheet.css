@@ -1,4 +1,5 @@
 .justified-fullscreen-square {
+    background-color: rgba(255, 255, 255, 0.25);
 }
 #ribbon {
     display: block;
@@ -232,8 +233,8 @@ p#score_counter {
 
 div#score_popup p {
     font-family: sans-serif;
-    color: white;
-    background: rgba(0, 0, 0, 0.73);
+    color: rgb(251, 251, 251); 
+    background: rgba(0, 0, 0, 0.75);
     text-align: center;
 }
 
@@ -432,9 +433,9 @@ div#top_bar {
         margin: 1vh;
     }
     img.power_up_button.selected {
-        width: 12vh;
-        height: 12vh;
-        margin-top: -2vh;
+        width: 11vh;
+        height: 11vh;
+        margin-top: 0vh;
     }
 
 }
@@ -503,9 +504,9 @@ div#top_bar {
         margin: 1vw;
     }
     img.power_up_button.selected {
-        width: 12vw;
-        height: 12vw;
-        margin-top: -2vw;
+        width: 11vw;
+        height: 11vw;
+        margin-top: 0vw;
     }
 }
 img.power_up_button {
@@ -514,6 +515,5 @@ img.power_up_button {
     box-shadow: 0px 0px 1px #00000040;
 }
 img.power_up_button.selected {
-    border: 2px solid rgba(255, 255, 255, 0);
-    outline: 2px solid rgb(255, 255, 255);
+    outline: 3px solid rgba(255, 255, 255, 0.41);
 }
