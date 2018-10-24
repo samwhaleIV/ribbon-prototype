@@ -287,7 +287,7 @@ var vowels = "aeiuo";
 
 var vowelCount = 0;
 
-var startWords = ["admires","reality","adheres","shipped","skipped","flipped","isolate","ingrate","treason","senator","inertia"];
+var startWords = ["admires","reality","adheres","shipped","skipped","flipped","isolate","ingrate","treason","senator"];
 
 function generateRandomStart() {
     return startWords[Math.floor(Math.random() * startWords.length)];
@@ -814,7 +814,7 @@ function keepPlaying() {
 }
 function gameEnd() {
     if(storage.exists("highscore")) {
-        if(Number(storage.get("highscore")) > score) {
+        if(score > Number(storage.get("highscore"))) {
             storage.set("highscore",score);
         }
     } else {
@@ -847,15 +847,14 @@ function gameEnd() {
         let longestWord = storage.get("longest_word");
         let longestWordLength;
         if(!longestWord) {
-            longestWord = "";
             longestWordLength = 0;
         } else {
             longestWordLength = longestWord.length;
         }
-        addedWords.forEach(word => {
-            var wordLength = word.length;
+        addedWords.forEach(addedWord => {
+            var wordLength = addedWord.word.length;
             if(wordLength > longestWordLength) {
-                longestWord = word;
+                longestWord = addedWord.word;
                 longestWordLength = wordLength;
             }
         });
