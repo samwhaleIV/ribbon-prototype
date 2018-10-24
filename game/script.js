@@ -910,18 +910,18 @@ var hasScramblers;
 
 function UseScissors() {
     var ownedScissors = Number(storage.get("owned_scissors"));
-    if(--ownedScissors <= 0) {
+    if(--ownedScissors >= 0) {
         ScissorsPowerUp.classList.add("hidden");
         hasScissors = false;
         if(selectedElement === ScissorsPowerUp) {
             selectedElement.classList.remove("selected");
             selectedElement = null;
         }
-        updateDrawStringInput(generateRandomStart());
-        playSound("powerup");
-        storage.set("owned_scissors",ownedScissors);
-        storage.set("used_scissors",Number(storage.get("used_scissors") + 1));
     }
+    updateDrawStringInput(generateRandomStart());
+    playSound("powerup");
+    storage.set("owned_scissors",ownedScissors);
+    storage.set("used_scissors",Number(storage.get("used_scissors") + 1));
 }
 function UseScrambler() {
     var ownedScramblers = Number(storage.get("owned_scramblers"));
@@ -932,14 +932,14 @@ function UseScrambler() {
             selectedElement.classList.remove("selected");
             selectedElement = null;
         }
-        for(var i = 0;i<7;i++) {
-            userLettersElements[i].classList.add("activated");
-        }
-        generateNewLetters();
-        playSound("powerup");
-        storage.set("owned_scramblers",ownedScramblers);
-        storage.set("used_scramblers",Number(storage.get("used_scramblers") + 1));
     }
+    for(var i = 0;i<7;i++) {
+        userLettersElements[i].classList.add("activated");
+    }
+    generateNewLetters();
+    playSound("powerup");
+    storage.set("owned_scramblers",ownedScramblers);
+    storage.set("used_scramblers",Number(storage.get("used_scramblers") + 1));
 }
 
 function BeginGameRuntime() {
