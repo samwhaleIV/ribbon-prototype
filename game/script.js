@@ -910,7 +910,7 @@ var hasScramblers;
 
 function UseScissors() {
     var ownedScissors = Number(storage.get("owned_scissors"));
-    if(--ownedScissors >= 0) {
+    if(--ownedScissors <= 0) {
         ScissorsPowerUp.classList.add("hidden");
         hasScissors = false;
         if(selectedElement === ScissorsPowerUp) {
