@@ -9,6 +9,12 @@ if(!localStorage.getItem("coins")) {
     localStorage.setItem("owns_colors",false);
     localStorage.setItem("owns_grocery_king",false);
     localStorage.setItem("blue_theme",false);
+
+    localStorage.setItem("total_coins",0);
+    localStorage.setItem("rounds_played",0);
+    localStorage.setItem("used_scramblers",0);
+    localStorage.setItem("used_scissors",0);
+    localStorage.setItem("longest_word","none");
 }
 var storage = {
     set: function(key,value) {
