@@ -1,6 +1,7 @@
 if(storage.get("blue_theme")) {
-    document.body.classList.remove("pink");
     document.body.classList.add("blue");
+} else {
+    document.body.classList.add("pink");
 }
 function GoBack() {
     window.location.assign("../index.html");
