@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="stylesheet.css">
     <Title>Ribbon</Title>
-    <script src="../test/dictionary-test.js"></script>
+    <script src="../dictionary-handler.js"></script>
 </head>
-<body class="pink">
+<body>
     <div id="end_screen" class="hidden no-select">
         <div id="end_screen_content">
             <div>
@@ -66,14 +66,14 @@
             <p>sound effects</p>
             <label class="switch">
                 <input id="sound_effects_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider pink" id="Slider1"></span>
+                <span class="slider" id="Slider1"></span>
             </label>
         </div>
         <div id="p1" class="popout_ui toggle">
             <p>music</p>
             <label class="switch">
                 <input id="music_toggle" type="checkbox" onclick="event.stopPropagation();return false;">
-                <span class="slider pink" id="Slider2"></span>
+                <span class="slider" id="Slider2"></span>
             </label>
         </div>
         <div id="p2" class="popout_ui">
@@ -86,7 +86,7 @@
             <p>=</p>
         </div>
         <div id="timer_bar">
-            <div id="timer_bar_child" class="pink"></div>
+            <div id="timer_bar_child"></div>
         </div>
     </div>
     <audio id="music_player" loop="true" preload="auto"><source src="14.mp3" type="audio/mpeg"></audio>

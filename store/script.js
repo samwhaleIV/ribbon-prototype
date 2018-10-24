@@ -1,6 +1,9 @@
 //Nothing on this line
 //Or this line
 
+updateTheme(storage.get("blue_theme"));
+updateCoinsText();
+
 const StoreItem1 = document.getElementById("StoreItem1");
 const StoreItem2 = document.getElementById("StoreItem2");
 const StoreItem3 = document.getElementById("StoreItem3");
@@ -226,13 +229,16 @@ function focusDown() {
             break;
     }
 }
+function GoBack() {
+    window.location.assign("../index.html");
+}
 function userInterfaceClick() {
     if(!deffoc()) {
         return;
     }
     switch(selectedElement.id) {
         case "BackButton":
-            window.location.assign("../index.html");
+            GoBack();
             break;
         case "StoreItem1":
             PurchaseScramblers();
@@ -265,6 +271,7 @@ function RegisterInputEvents() {
     InputSchematic.Right = focusDown;
     InputSchematic.Left = focusUp;
     InputSchematic.Enter = userInterfaceClick;
+    InputSchematic.Back = GoBack;
 }
 
 [BackButton,StoreItem1,StoreItem2,StoreItem3,StoreItem4].forEach(item => {
@@ -286,9 +293,5 @@ function RegisterInputEvents() {
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
 }
-if(storage.get("blue_theme")) {
-    updateTheme(true);
-}
-updateCoinsText();
 updateOnInventory();
 RegisterInputEvents();

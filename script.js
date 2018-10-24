@@ -58,11 +58,13 @@ function userInterfaceClick() {
             window.location.assign("game/game.html");
             break;
         case "stats_button":
+            window.location.assign("stats/stats.html");
             break;
         case "store_button":
             window.location.assign("store/store.html");
             break;
         case "about_button":
+            window.location.assign("about/about.html");
             break;
     }
 }
@@ -109,8 +111,9 @@ for(var i = 0;i<menuButtons.children.length;i++) {
     })(menuButtons.children[i]);  
 }
 if(storage.get("blue_theme")) {
-    document.body.classList.remove("pink");
     document.body.classList.add("blue");
+} else {
+    document.body.classList.add("pink");
 }
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);

@@ -86,7 +86,3 @@ div.store_item.selected {
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
-#BackButton.selected {
-    cursor: pointer;
-    padding: 5px;
-}

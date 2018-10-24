@@ -545,7 +545,7 @@ function playMusic(dontSave) {
     playingMusic = true;
     musicPlayer.play();
     if(!dontSave) {
-        storage.set("music_playing",true);
+        storage.set("playing_music",true);
     }
 }
 function stopMusic(dontSave) {
@@ -555,10 +555,9 @@ function stopMusic(dontSave) {
     playingMusic = false;
     musicPlayer.pause();
     if(!dontSave) {
-        storage.set("music_playing",false);
+        storage.set("playing_music",false);
     }
 }
-
 var userLettersElements;
 var ribbonLettersElements;
 var userInput;
@@ -626,19 +625,19 @@ function SetupStuffAndDoStuffAndStuff() {
 
     RegisterDom();
 
+    const slider1 = document.getElementById("Slider1");
+    const slider2 = document.getElementById("Slider2");
+
     if(storage.get("blue_theme")) {
-        document.body.classList.remove("pink");
         document.body.classList.add("blue");
-        timerBarChild.classList.remove("pink");
         timerBarChild.classList.add("blue");
-
-        const slider1 = document.getElementById("Slider1");
-        const slider2 = document.getElementById("Slider2");
-
-        slider1.classList.remove("pink");
         slider1.classList.add("blue");
-        slider2.classList.remove("pink");
         slider2.classList.add("blue");
+    } else {
+        document.body.classList.add("pink");
+        timerBarChild.classList.add("pink");
+        slider1.classList.add("pink");
+        slider2.classList.add("pink");
     }
 
     for(var i = 0;i<7;i++) {
