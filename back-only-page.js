@@ -25,5 +25,4 @@ BackButton.addEventListener("click",GoBack);
 BackButton.addEventListener("mouseleave",UnfocusBackButton);
 if(storage.get("playing_sounds")) {
     enableSoundEngine(true);
-    playSound("add");
 }

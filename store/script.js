@@ -68,13 +68,12 @@ function updateOwnedColors() {
 function updateOwnedGroceryKing() {
     if(storage.exists("owns_grocery_king")) {
         StoreItem4.classList.add("purchased");
-        ownsGroceryKingElement.textContent = PurchasedText;
+        ownsGroceryKingElement.textContent = "I am ready";
     } else {
         StoreItem4.classList.remove("purchased");
         ownsGroceryKingElement.textContent = NotPurchasedText;
     }
 }
-const PurchasedText = "You own this";
 const NotPurchasedText = "Not purchased";
 const OwnedText = " owned";
 function updateOnInventory() {
@@ -165,7 +164,7 @@ function PurchaseColors() {
 }
 function PurchaseGroceryKing() {
     if(storage.get("owns_grocery_king")) {
-        playSound("fail");
+        window.location.assign("../mystery/mystery.html");
         return;
     }
     let coins = storage.get("coins");

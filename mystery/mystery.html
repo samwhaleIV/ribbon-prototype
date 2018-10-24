@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="../back-only-page.css">
+    <Title>Ribbon - Mystery</Title>
+    <style>
+        @media all and (orientation: landscape) {
+            img {
+                width: 100vh;
+                height: 100vh;
+            }
+        }
+        @media all and (orientation: portrait) {
+            img {
+                width: 100vw;
+                height: 100vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top_bar no-select">
+        <p class="splash_text">Hi ThErE YoU CaN'T BeAt ME</p>
+        <div class="top_bar_button" id="BackButton">
+            <p>&lt;</p>
+        </div>
+    </div>
+    <div class="justified-fullscreen-square no-select">
+        <img src="../Grocery King.png"/>
+    </div>
+    <script src="../soundengine.js"></script>
+    <script src="../platform-specific.js"></script>
+    <script src="../back-only-page.js"></script>
+    <script>
+        setTimeout(function() {
+            if(storage.get("owns_grocery_king")) {
+                var messages = ["Hey. It's just me. A giant grocery king.","Why are you stil standing there","Please, go away","Please, I really don't like company","You ArE StARtIng To ANgeR Me","WHAT!????? YOU ARE HERE TO HURT ME?","Well, I am a pacifist.","Just go.","I am not going to fight you","Bye",". . . . .","...","","",undefined,undefined,"Ugh! Just take this coin and leave!"];
+                let messageIndex = 0;
+                var recurse = function() {
+                    alert(messages[messageIndex]);
+                    messageIndex++;
+                    if(messageIndex < messages.length) {
+                        setTimeout(function() {
+                            recurse();
+                        },1000);
+                    } else {
+                        var coins = storage.get("coins");
+                        if(!coins) {
+                            coins = 1;
+                        } else {
+                            coins = Number(coins) + 1;
+                        }
+                        var totalCoins = storage.get("total_coins");
+                        if(!totalCoins) {
+                            totalCoins = 1;
+                        } else {
+                            totalCoins = Number(totalCoins) + 1;
+                        }
+                        storage.set("coins",coins);
+                        storage.set("total_coins",totalCoins);
+                        GoBack();
+                    }
+                }
+                recurse();
+            } else {
+                alert("You ShoULdN't BE HeRE. GeT AWAY, BEasT!");
+                GoBack();
+            }
+        },1000);
+    </script>
+</body>

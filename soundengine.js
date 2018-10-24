@@ -17,6 +17,7 @@ function playSound(name) {
         return;
     }
     switch(name) {
+        case "powerup"://todo seperate the powerup case
         case "add":
             addSound.currentTime = 0;
             addSound.play();
@@ -25,7 +26,6 @@ function playSound(name) {
             focusSound.currentTime = 0;
             focusSound.play();
             break;
-        case "pluck":
         case "enter":
         case "erase"://todo seperate the erase case
             enterSound.currentTime = 0;

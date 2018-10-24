@@ -1,3 +1,6 @@
+.justified-fullscreen-square {
+    background-color: rgba(0, 0, 0, 0.06);
+}
 #ribbon {
     display: block;
     position: relative;
@@ -392,7 +395,7 @@ div#top_bar {
     }
     #pending_input {
         border-bottom: 1vh solid black;
-        font-size: 6vh;
+        font-size: 5vh;
         width: 95vh;
         height: 12vh;
         top: 19vh;
@@ -413,23 +416,30 @@ div#top_bar {
         padding-right: 4vh;
         height: 11vh;
     }
-
     div#score_popup {
         width: 100vh;
         top: 23vh;
     }
-
     div#score_popup.shown {
         animation-name: show_score_landscape;
     }
-    
     div#score_popup p { 
         font-size: 5vh;      
         width: 100%;
     }
+    img.power_up_button {
+        width: 10vh;
+        height: 10vh;
+        margin: 1vh;
+    }
+    img.power_up_button.selected {
+        width: 12vh;
+        height: 12vh;
+        margin-top: -2vh;
+    }
 
 }
-@media all and (orientation: portrait) {
+@media (orientation: portrait) {
     #ribbon_letters {
         font-size: 22vw;
     }
@@ -450,7 +460,7 @@ div#top_bar {
     }
     #pending_input {
         border-bottom: 1vw solid black;
-        font-size: 8vw;
+        font-size: 5vw;
         width: 86vw;
         height: 12vw;
         top: 19vw;
@@ -488,4 +498,23 @@ div#top_bar {
         font-size: 5vw;        
         width: 100vw;
     }
+    img.power_up_button {
+        width: 10vw;
+        height: 10vw;
+        margin: 1vw;
+    }
+    img.power_up_button.selected {
+        width: 12vw;
+        height: 12vw;
+        margin-top: -2vw;
+    }
+}
+img.power_up_button {
+    float: right;
+    cursor: pointer;
+    box-shadow: 0px 0px 1px #00000040;
+}
+img.power_up_button.selected {
+    border: 2px solid rgba(255, 255, 255, 0);
+    outline: 2px solid rgb(255, 255, 255);
 }

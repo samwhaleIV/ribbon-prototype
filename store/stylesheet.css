@@ -67,7 +67,7 @@ div.store_item p.owned {
     background-color: rgba(0, 0, 0, 0.78);
     padding: 8px;
 }
-@media (orientation: portrait) {
+@media all and (orientation: portrait) {
     div.store_item {
         width: 95%;
         height: 22%;

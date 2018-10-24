@@ -1,8 +1,14 @@
-if(!localStorage.getItem("coins")) {
-    //sets the default values
-    localStorage.setItem("highscore",0);
+//Sets the default values if storage_secure is missing. Could be used to clear all data.
+if(localStorage.getItem("storage_secured") !== "Yep") {
+
+    localStorage.clear();
+
+    localStorage.setItem("storage_secured","Yep");
+
     localStorage.setItem("playing_music",true);
     localStorage.setItem("playing_sounds",true);
+
+    localStorage.setItem("highscore",0);
     localStorage.setItem("coins",0);
     localStorage.setItem("owned_scramblers",0);
     localStorage.setItem("owned_scissors",0);
@@ -15,6 +21,7 @@ if(!localStorage.getItem("coins")) {
     localStorage.setItem("used_scramblers",0);
     localStorage.setItem("used_scissors",0);
     localStorage.setItem("longest_word","none");
+
 }
 var storage = {
     set: function(key,value) {

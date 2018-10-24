@@ -141,9 +141,7 @@ function focusUp() {
             if(!inDropDownMenu) {
                 if(selectedElement.id.startsWith("n")) {
                     SelectElement(leftInsert);
-                } else if(selectedElement.id.endsWith("insert")) {
-                    userInterfaceClick(popoutButton);
-                } else if(selectedElement.id == "popout_button") {
+                } else {
                     userInterfaceClick(popoutButton);
                 }
             } else {
@@ -174,6 +172,8 @@ function focusDown() {
                     case "left_insert":
                         SelectElement(document.getElementById("n0"));
                         break;
+                    case "ScissorsPowerUp":
+                    case "ScramblerPowerUp":
                     case "right_insert":
                         SelectElement(document.getElementById("n6"));
                         break;
@@ -208,7 +208,15 @@ function focusLeft() {
                 } else if(selectedElement.id == "right_insert") {
                     SelectElement(leftInsert);
                 } else if(selectedElement.id == "left_insert") {
-                    SelectElement(rightInsert);
+                    if(hasScissors || hasScramblers) {
+                        if(hasScramblers) {
+                            SelectElement(ScramblerPowerUp);
+                        } else {
+                            SelectElement(ScissorsPowerUp);
+                        }
+                    } else {
+                        SelectElement(rightInsert);
+                    }
                 }
             } else {
                 focusUp();
@@ -232,7 +240,15 @@ function focusRight() {
                     }
                     SelectElement(document.getElementById(`n${number}`));
                 } else if(selectedElement.id == "left_insert") {
-                    SelectElement(rightInsert);
+                    if(hasScissors || hasScramblers) {
+                        if(hasScissors) {
+                            SelectElement(ScissorsPowerUp);
+                        } else {
+                            SelectElement(ScramblerPowerUp);
+                        }
+                    } else {
+                        SelectElement(rightInsert);
+                    }
                 } else if(selectedElement.id == "right_insert") {
                     SelectElement(leftInsert);
                 }
@@ -271,7 +287,7 @@ var vowels = "aeiuo";
 
 var vowelCount = 0;
 
-var startWords = ["admires","reality","adheres","shipped","skipped","flipped"];
+var startWords = ["admires","reality","adheres","shipped","skipped","flipped","isolate","ingrate","treason","senator","inertia"];
 
 function generateRandomStart() {
     return startWords[Math.floor(Math.random() * startWords.length)];
@@ -469,11 +485,11 @@ function userInterfaceClick(element,byMouse) {
             switch(selectedElement.id) {
                 case "keep_playing_button":
                     keepPlaying();
-                    playSound("pluck");
+                    playSound("enter");
                     break;
                 case "stop_here_button":
                     window.location.assign("../index.html");
-                    playSound("pluck");
+                    playSound("enter");
                     break;
             }
         } else if(!inDropDownMenu) {
@@ -484,6 +500,12 @@ function userInterfaceClick(element,byMouse) {
                     if(!byMouse) {
                         SelectElement(defaultDropDownElement);
                     }
+                    break;
+                case "ScramblerPowerUp":
+                    UseScrambler();
+                    break;
+                case "ScissorsPowerUp":
+                    UseScissors();
                     break;
                 case "right_insert":
                     if(DEBUG_MIDDLE_STRING.length > 0) {
@@ -586,6 +608,8 @@ var totalPointsElement;
 var keepPlayingButton;
 var stopHereButton;
 var endScreenContent;
+var ScissorsPowerUp;
+var ScramblerPowerUp;
 function RegisterDom() {
     userLettersElements = document.getElementById("number_bar").children[0].children;
     ribbonLettersElements = document.getElementById("ribbon_letters").children;
@@ -612,6 +636,8 @@ function RegisterDom() {
     keepPlayingButton = document.getElementById("keep_playing_button");
     stopHereButton = document.getElementById("stop_here_button");
     endScreenContent = document.getElementById("end_screen_content");
+    ScissorsPowerUp = document.getElementById("ScissorsPowerUp");
+    ScramblerPowerUp = document.getElementById("ScramblerPowerUp");
 }
 function RegisterInputEvents() {
     InputSchematic.Up = focusUp;
@@ -682,67 +708,19 @@ function SetupStuffAndDoStuffAndStuff() {
         })(popout.children[i]);     
     }
 
-    leftInsert.addEventListener("mouseover",function() {
-        SelectElement(leftInsert);
+
+    [stopHereButton,keepPlayingButton,popoutButton,rightInsert,leftInsert,ScissorsPowerUp,ScramblerPowerUp].forEach(item => {
+        item.addEventListener("mouseleave",function() {
+            elementHoverEnd(item);
+        });
+        item.addEventListener("mouseenter",function() {
+            SelectElement(item);
+        });
+        item.addEventListener("click",function() {
+            userInterfaceClick(item,true);
+        });
     });
 
-    leftInsert.addEventListener("mouseout",function() {
-        elementHoverEnd(leftInsert);
-    });
-
-    rightInsert.addEventListener("mouseover",function() {
-        SelectElement(rightInsert);
-    });
-
-    rightInsert.addEventListener("mouseout",function() {
-        elementHoverEnd(rightInsert);
-    });
-
-    leftInsert.addEventListener("click",function() {
-        userInterfaceClick(leftInsert,true);
-    });
-
-    rightInsert.addEventListener("click",function() {
-        userInterfaceClick(rightInsert,true);
-    });
-
-    popoutButton.addEventListener("mouseout",function() {
-        elementHoverEnd(popoutButton);
-    });
-
-    popoutButton.addEventListener("mouseover",function() {
-        SelectElement(popoutButton);
-    });
-
-    popoutButton.addEventListener("click",function() {
-        userInterfaceClick(popoutButton,true);
-    });
-
-    //keep playing button
-    keepPlayingButton.addEventListener("mouseleave",function() {
-        elementHoverEnd(keepPlayingButton);
-    });
-
-    keepPlayingButton.addEventListener("mouseenter",function() {
-        SelectElement(keepPlayingButton);
-    });
-
-    keepPlayingButton.addEventListener("click",function() {
-        userInterfaceClick(keepPlayingButton,true);
-    });
-
-    //stop here button
-    stopHereButton.addEventListener("mouseleave",function() {
-        elementHoverEnd(stopHereButton);
-    });
-
-    stopHereButton.addEventListener("mouseenter",function() {
-        SelectElement(stopHereButton);
-    });
-
-    stopHereButton.addEventListener("click",function() {
-        userInterfaceClick(stopHereButton,true);
-    });
 
     window.addEventListener("resize",function() {
         drawString();
@@ -834,8 +812,6 @@ function keepPlaying() {
     elapsedTime = 0;
     startTimer();
 }
-
-
 function gameEnd() {
     if(storage.exists("highscore")) {
         if(storage.get("highscore") > score) {
@@ -844,6 +820,7 @@ function gameEnd() {
     } else {
         storage.set("highscore",score);
     }
+    storage.set("rounds_played",Number(storage.get("rounds_played")) + 1);
     clearUserInput();
     onGameEndScreen = true;
     if(selectedElement !== null) {
@@ -867,6 +844,23 @@ function gameEnd() {
             score: "): no points earned"
         });
     } else {
+        let longestWord = storage.get("longest_word");
+        let longestWordLength;
+        if(!longestWord) {
+            longestWord = "";
+            longestWordLength = 0;
+        } else {
+            longestWordLength = longestWord.length;
+        }
+        addedWords.forEach(word => {
+            var wordLength = word.length;
+            if(wordLength > longestWordLength) {
+                longestWord = word;
+                longestWordLength = wordLength;
+            }
+        });
+        storage.set("longest_word",longestWord);
+
         let coins = storage.get("coins");
         if(!coins) {
             coins = 0;
@@ -887,6 +881,7 @@ function gameEnd() {
                 });    
             }
             coins += newCoins;
+            storage.set("total_coins",Number(storage.get("total_coins")) + newCoins);
             storage.set("coins",coins);
         }    
     }
@@ -909,6 +904,44 @@ function startTimer() {
     timerInterval = setInterval(timerTick,1000);
 }
 var playingMusic;
+
+var hasScissors;
+var hasScramblers;
+
+function UseScissors() {
+    var ownedScissors = Number(storage.get("owned_scissors"));
+    if(--ownedScissors <= 0) {
+        ScissorsPowerUp.classList.add("hidden");
+        hasScissors = false;
+        if(selectedElement === ScissorsPowerUp) {
+            selectedElement.classList.remove("selected");
+            selectedElement = null;
+        }
+        updateDrawStringInput(generateRandomStart());
+        playSound("powerup");
+        storage.set("owned_scissors",ownedScissors);
+        storage.set("used_scissors",Number(storage.get("used_scissors") + 1));
+    }
+}
+function UseScrambler() {
+    var ownedScramblers = Number(storage.get("owned_scramblers"));
+    if(--ownedScramblers <= 0) {
+        ScramblerPowerUp.classList.add("hidden");
+        hasScramblers = false;
+        if(selectedElement === ScramblerPowerUp) {
+            selectedElement.classList.remove("selected");
+            selectedElement = null;
+        }
+        for(var i = 0;i<7;i++) {
+            userLettersElements[i].classList.add("activated");
+        }
+        generateNewLetters();
+        playSound("powerup");
+        storage.set("owned_scramblers",ownedScramblers);
+        storage.set("used_scramblers",Number(storage.get("used_scramblers") + 1));
+    }
+}
+
 function BeginGameRuntime() {
     updateDrawStringInput(generateRandomStart());
     generateNewLetters();
@@ -918,6 +951,25 @@ function BeginGameRuntime() {
         storage.get("playing_music"),
         storage.get("playing_sounds")
     );
+    const ownedScramblers = storage.get("owned_scramblers");
+    if(ownedScramblers && Number(ownedScramblers) > 0) {
+        hasScramblers = true;
+        ScramblerPowerUp.classList.remove("hidden");
+    } else {
+        hasScramblers = false;
+        storage.set("owned_scramblers",0);
+    }
+
+    const ownedScissors = storage.get("owned_scissors");
+    if(ownedScissors && Number(ownedScissors) > 0) {
+        hasScissors = true;
+        ScissorsPowerUp.classList.remove("hidden");
+    } else {
+        hasScissors = false;
+        storage.set("owned_scissors",0);
+    }
+
+
     drawString();
     startTimer();
 }

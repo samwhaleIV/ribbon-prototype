@@ -5,8 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../base.css">
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="../back-only-page.css">
     <Title>Ribbon - About</Title>
+    <style>
+        a:link,a:visited,a:active {
+            color: rgb(168, 168, 232);
+        }
+        a:hover,a:active {
+            color: rgb(183, 64, 255);
+        }
+    </style>
 </head>
 <body>
     <div class="top_bar no-select">
@@ -14,6 +22,14 @@
         <div class="top_bar_button" id="BackButton">
             <p>&lt;</p>
         </div>
+    </div>
+    <div class="justified-fullscreen-square no-select">
+        <p>Special thanks to:</p>
+        <p>Jim - For awesome music and support</p>
+        <p>Kyndrajauna - For grocery king and support</p>
+        <p><a href="https://stackoverflow.com/a/49371349/3967379">Roy Aarts for finding a canvas curve function</a></p>
+        <p><a href="https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript/47593316#47593316">bryc for their Lehmer LCG</a></p>
+        <p>And last but not least, Wednesday</p>
     </div>
     <script src="../soundengine.js"></script>
     <script src="../platform-specific.js"></script>
