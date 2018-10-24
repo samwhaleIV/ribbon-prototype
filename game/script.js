@@ -814,7 +814,7 @@ function keepPlaying() {
 }
 function gameEnd() {
     if(storage.exists("highscore")) {
-        if(storage.get("highscore") > score) {
+        if(Number(storage.get("highscore")) > score) {
             storage.set("highscore",score);
         }
     } else {
@@ -921,7 +921,7 @@ function UseScissors() {
     updateDrawStringInput(generateRandomStart());
     playSound("powerup");
     storage.set("owned_scissors",ownedScissors);
-    storage.set("used_scissors",Number(storage.get("used_scissors") + 1));
+    storage.set("used_scissors",Number(storage.get("used_scissors")) + 1);
 }
 function UseScrambler() {
     var ownedScramblers = Number(storage.get("owned_scramblers"));
@@ -939,7 +939,7 @@ function UseScrambler() {
     generateNewLetters();
     playSound("powerup");
     storage.set("owned_scramblers",ownedScramblers);
-    storage.set("used_scramblers",Number(storage.get("used_scramblers") + 1));
+    storage.set("used_scramblers",Number(storage.get("used_scramblers")) + 1);
 }
 
 function BeginGameRuntime() {
