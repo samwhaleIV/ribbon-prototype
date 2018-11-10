@@ -1,5 +1,5 @@
 p#title {
-    font-family: "Earwig factory";
+    font-family: serif;
     text-align: center;
     top: 40px;
     background-color: white;
@@ -13,23 +13,23 @@ p#title span {
     display: inline-block;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
 }
 
 p#title span:nth-child(2) {
     animation-delay: 0.1s;
 }
 p#title span:nth-child(3) {
-    animation-delay: 0.2s;
+    animation-delay: 0.15s;
 }
 p#title span:nth-child(4) {
-    animation-delay: 0.3s;
+    animation-delay: 0.25s;
 }
 p#title span:nth-child(5) {
-    animation-delay: 0.4s;
+    animation-delay: 0.3s;
 }
 p#title span:nth-child(6) {
-    animation-delay: 0.5s;
+    animation-delay: 0.4s;
 }
 
 p#title span:nth-child(odd) {

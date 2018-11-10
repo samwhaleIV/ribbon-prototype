@@ -12,7 +12,7 @@
 #ribbon_letters {
     display: flex;
     flex-wrap: nowrap;
-    font-family: "Earwig Factory";
+    font-family: monospace;
     color: black;
     margin-left: auto;
     margin-right: auto;
@@ -23,7 +23,7 @@
 #number_bar {
     position: relative;
     display: flex;
-    font-family: "earwig factory";
+    font-family: serif;
     color: white;
     background-color: black;
     margin-left: auto;
@@ -377,7 +377,7 @@ div#top_bar {
 
 @media all and (orientation: landscape) {
     #ribbon_letters {
-        font-size: 22vh;
+        font-size: 18vh;
     }
     #overlay_canvas {
         width: 100vh;
@@ -441,7 +441,7 @@ div#top_bar {
 }
 @media (orientation: portrait) {
     #ribbon_letters {
-        font-size: 22vw;
+        font-size: 18vw;
     }
     #overlay_canvas {
         width: 100vw;
@@ -512,7 +512,7 @@ div#top_bar {
 img.power_up_button {
     float: right;
     cursor: pointer;
-    box-shadow: 0px 0px 1px #00000040;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
 img.power_up_button.selected {
     outline: 3px solid rgba(255, 255, 255, 0.41);
