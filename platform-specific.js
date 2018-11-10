@@ -3,6 +3,8 @@ if(localStorage.getItem("storage_secured") !== "Yep") {
 
     localStorage.clear();
 
+    localStorage.setItem("did_tutorial",false);
+
     localStorage.setItem("storage_secured","Yep");
 
     localStorage.setItem("playing_music",true);

@@ -7,12 +7,12 @@ div#store_items {
 div.store_item {
     width: 50%;
     height: 21%;
-    background-color: rgba(255, 255, 255, 0.27);
+    background-color: rgba(255, 255, 255, 0.42);
     margin-left: auto;
     margin-right: auto;
     position: relative;
     margin-top: 1%;
-    box-shadow: 0px 0px 4px 0px #7b7b7b;
+    box-shadow: 0px 0px 2px 0px #00000052;
     margin-bottom: 1%;
 }
 div.store_item img {
@@ -35,9 +35,9 @@ div.store_item p.cost {
     padding-top: 5px;
     padding-bottom: 5px;
     height: calc(100% - 10px);
-    color: white;
+    color: rgb(0, 0, 0);
     z-index: 1;
-    background: rgba(56, 56, 56, 0.73);
+    background: rgb(255, 255, 255);
 }
 div.store_item p.description {
     background: rgb(0, 0, 0);
@@ -64,7 +64,7 @@ div.store_item p.owned {
     font-family: sans-serif;
     font-size: 18px;
     color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0.78);
+    background-color: rgba(0, 0, 0, 0.85);
     padding: 8px;
 }
 @media all and (orientation: portrait) {

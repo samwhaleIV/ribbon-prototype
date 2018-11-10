@@ -100,7 +100,7 @@ div.menu_button p {
 }
 
 div.menu_button div p {
-    top: 40px;
+    top: 5vh;
     left: 20% !important;
     line-height: 6vh;
     background-color: rgb(255, 255, 255);
@@ -154,4 +154,40 @@ div.menu_button.selected {
         top: calc(40px + 19vh);
         height: calc(81% - 40px);
     }
+}
+div#tutorial_overlay {
+    top: 40px;
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 40px);
+    background: rgba(35, 35, 35, 0.96);
+}
+div#tutorial_overlay div {
+    width: 90%;
+    height: 90%;
+    background-color: rgba(196, 195, 195, 0.94);
+    left: 5%;
+    top: 5%;
+    position: relative;
+    box-shadow: 0px 0px 5px #424242;
+}
+div#tutorial_overlay div p {
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+    font-size: 22px;
+    padding: 10%;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    padding-bottom: 5%;
+}
+div.hidden {
+    display: none;
+}
+div#tutorial_overlay div img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+    height: 40%;
+    top: 4%;
 }
