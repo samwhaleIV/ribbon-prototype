@@ -397,7 +397,11 @@ function clearUserInput() {
 }
 
 var clearAction = null;
-var addedWords = [];
+var defaultFakeWordForInfo = {
+    word: "Word",
+    score: "Points"
+};
+var addedWords = [defaultFakeWordForInfo];
 var score = 0;
 
 function updateScoreCounter() {
@@ -709,7 +713,7 @@ function timerTick() {
     if(elapsedTime > endTime - 8) {
         playSound("tick");
     }
-    if(elapsedTime === endTime + 1) {
+    if(elapsedTime >= endTime + 1) {
         timerBarChild.classList.remove("flashing");    
         clearInterval(timerInterval);
         gameEnd();
@@ -726,7 +730,7 @@ function keepPlaying() {
     scoreCounter.textContent = "0 points";
     score = 0;
     onGameEndScreen = false;
-    addedWords = [];
+    addedWords = addedWords = [defaultFakeWordForInfo];
     for(var i = 0;i<7;i++) {
         userLettersElements[i].classList.add("activated");
     }
@@ -757,10 +761,10 @@ function gameEnd() {
     popoutButton.classList.add("hidden");
     endScreen.classList.remove("hidden");
     gameSquare.classList.add("hidden");
-    for(var i = 1;i<endScreenContent.children.length;i++) {
-        endScreenContent.children[i].remove();
+    while(endScreenContent.firstChild) {
+        endScreenContent.removeChild(endScreenContent.firstChild);
     }
-    if(addedWords.length < 1) {
+    if(addedWords.length < 2) {
         addedWords.push({
             word: "no words made",
             score: "): no points earned"
