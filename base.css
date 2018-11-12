@@ -16,13 +16,13 @@ body,html,p {
     cursor: default;
 }
 .justified-fullscreen-square {
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
 }
 @media all and (orientation: landscape) {
     .justified-fullscreen-square {
         height: 100vh;
         width: 100vh;
+        left: calc(50vw - 50vh);
     }
 }
 @media all and (orientation: portrait) {
@@ -30,7 +30,6 @@ body,html,p {
         height: 100vw;
         width: 100vw;
         top: calc(50vh - 50vw);
-        position: absolute;
     }
 }
 body.blue {

@@ -123,7 +123,12 @@
 div#score_popup {
     position: absolute;
     z-index: 0;
+    width: 100%;
+    top: 23%;
     display: none;
+}
+div#score_popup.shown {
+    animation-name: show_score;
 }
 div#end_screen {
     width: 100vw;
@@ -224,6 +229,7 @@ p#score_counter {
     position: absolute;
     width: 100%;
     z-index: 2;
+    top: 0px;
 }
 
 div#score_popup p {
@@ -353,21 +359,12 @@ div#top_bar {
     }
 }
 
-@keyframes show_score_landscape {
+@keyframes show_score {
     from {
-        top: 23vh;
+        top: 23%;
     }
     to {
-        top: 35vh;
-    }
-}
-
-@keyframes show_score_portrait {
-    from {
-        top: 23vw;
-    }
-    to {
-        top: 37vw;
+        top: 37%;
     }
 }
 
@@ -409,14 +406,9 @@ div#top_bar {
     }
     div#score_popup {
         width: 100vh;
-        top: 23vh;
-    }
-    div#score_popup.shown {
-        animation-name: show_score_landscape;
     }
     div#score_popup p { 
         font-size: 5vh;      
-        width: 100%;
     }
     img.power_up_button {
         width: 10vh;
@@ -468,20 +460,8 @@ div#top_bar {
         padding-right: 4vw;
         height: 11vw;
     }
-
-    div#score_popup {
-        width: 100vw;
-        left: 0vw;
-        top: 23vw;
-    }
-
-    div#score_popup.shown {
-        animation-name: show_score_portrait;
-    }
-    
     div#score_popup p {
-        font-size: 5vw;        
-        width: 100vw;
+        font-size: 5vw;
     }
     img.power_up_button {
         width: 10vw;
