@@ -5,10 +5,6 @@
     display: block;
     position: relative;
 }
-#overlay_canvas {
-    position: absolute;
-    display: block;
-}
 #ribbon_letters {
     display: flex;
     flex-wrap: nowrap;
@@ -18,7 +14,8 @@
     margin-right: auto;
     justify-content: center;
     background-color: white;
-    box-shadow: 0 0 24px 0 rgba(115, 115, 115, 0.5);
+    padding: 8px;
+    box-shadow: 0 0 1px 0 rgba(115, 115, 115, 0.5);
 }
 #number_bar {
     position: relative;
@@ -28,7 +25,7 @@
     background-color: black;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
 #number_bar div {
     display: flex;
@@ -70,8 +67,9 @@
     cursor: pointer;
 }
 
-#left_insert.selected, #right_insert.selected {
+#left_insert.selected, #right_insert.selected, #middle_input {
     background-color: white;
+    outline: 3px solid rgba(255, 255, 255, 0.41);
 }
 
 #left_insert {
@@ -86,9 +84,6 @@
     margin-left: auto;
     margin-right: auto;
     background-color: white;
-}
-#left_insert.selected, #right_insert.selected,#middle_input {
-    box-shadow: 0 0 1px white;
 }
 
 #timer_bar {
@@ -111,13 +106,13 @@
 }
 
 #popout .popout_ui {
-    background-color: #ffffff;
+    background-color: rgb(255, 255, 255);
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     height: 80px;
     margin-top: 20px;
-    box-shadow: 0px 0px 4px #676767;
+    box-shadow: 0px 0px 2px 0px #676767;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -137,7 +132,7 @@ div#end_screen {
     background: rgb(0, 0, 0);
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+    position: absolute;
     font-family: sans-serif;
     color: white;
     font-size: 22px;
@@ -226,16 +221,17 @@ p#score_counter {
     font-weight: bold;
     text-align: center;
     background-color: inherit;
-    position: fixed;
+    position: absolute;
     width: 100%;
     z-index: 2;
 }
 
 div#score_popup p {
     font-family: sans-serif;
-    color: rgb(251, 251, 251); 
+    color: rgb(251, 251, 251);
     background: rgba(0, 0, 0, 0.75);
     text-align: center;
+    position: relative;
 }
 
 div#score_popup.shown {
@@ -275,7 +271,7 @@ div#top_bar {
     height: calc(100vh - 40px);
     width: 100%;
     position: fixed;
-    background: white;
+    background: rgb(255, 255, 255);
     box-shadow: inset 0px 0px 4px 0px #616161;
     display: block;
     overflow-y: hidden; /* todo change maybe */
@@ -292,7 +288,7 @@ div#top_bar {
 
 #middle_input.hidden {
     background: none;
-    box-shadow: none;
+    outline: none;
 }
 
 #timer_bar_child {
@@ -371,18 +367,13 @@ div#top_bar {
         top: 23vw;
     }
     to {
-        top: 35vw;
+        top: 37vw;
     }
 }
 
 @media all and (orientation: landscape) {
     #ribbon_letters {
-        font-size: 18vh;
-    }
-    #overlay_canvas {
-        width: 100vh;
-        height: 26vh;
-        top: -5vh;
+        font-size: 16vh;
     }
     #number_bar p {
         padding-left: 1.5vh;
@@ -441,14 +432,8 @@ div#top_bar {
 }
 @media (orientation: portrait) {
     #ribbon_letters {
-        font-size: 18vw;
+        font-size: 16vw;
     }
-    #overlay_canvas {
-        width: 100vw;
-        height: 26vw;
-        top: -5vw;
-    }
-
     #number_bar p {
         padding-left: 1.5vw;
         padding-right: 1.5vw;
