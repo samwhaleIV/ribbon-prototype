@@ -1,0 +1,112 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "Ribbon",
+    "scope": "/ribbon-prototype/",
+    "display": "fullscreen",
+    "start_url": "https://mistopportunity.github.io/ribbon-prototype/",
+    "short_name": "Ribbon",
+    "theme_color": "transparent",
+    "description": "",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/PWA/images/d5bcf13f-b560-a71b-b325-dd18a4efc1bc.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/84bea4c2-487a-84b7-59eb-32b186eab0d9.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/8854439a-401a-d8f8-12cb-554f168074d6.webPlatform.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/16cea9b4-b4b8-5c3c-f6b8-db8b4ca802f3.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/fd695a08-5afa-259d-fa6f-9d5bf901bf3d.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/98aaccb3-f9df-1de6-fade-427924484133.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/feefdc26-c9bb-069c-06ca-a4dc0bc6c666.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/bb562bfd-5331-a374-5674-d46906139221.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/001bc500-d4db-4d68-a94c-57c7f7195729.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/1154aed5-c114-a079-1376-1b126e0968b0.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/93f1744e-70ac-72fe-4e5d-f352b80996cd.webPlatform.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/e4155801-4f6c-2302-92b1-81f0e8f14aab.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/2afb7803-2aa6-0b56-5cfa-6ecdf9e7d2b6.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/c22606e2-a34f-18f1-1f89-78e1328e658a.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/bac52e3a-39c3-c11a-b70f-7a472a8e26d2.webPlatform.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/2f1efc48-e0a1-c19b-0559-3daab5acf1dd.webPlatform.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/7e4e72df-b4c3-734c-cf82-eb2f1687d3d2.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/fb038e5b-f2cb-a74e-60c4-8f22921d874b.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "/PWA/images/a0d5292e-77f0-a816-35db-48075e2884ab.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
+        }
+    ]
+}
