@@ -5,7 +5,7 @@ var CACHE = 'pwabuilder-precache';
 var precacheFiles = [
     "/about/about.html",
     "/game/game.html",
-    "14.mp3",
+    "game/14.mp3",
     "/game/script.js",
     "/game/stylesheet.css",
     "/mystery/mystery.html",
