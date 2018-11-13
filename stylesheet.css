@@ -1,5 +1,5 @@
 p#title {
-    font-family: serif;
+    font-family: "Times New Roman", Times, serif;
     text-align: center;
     top: 40px;
     background-color: white;
@@ -84,7 +84,7 @@ div.menu_button img {
 }
 
 div.menu_button p {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     background: black;
     color: white;
@@ -97,17 +97,20 @@ div.menu_button p {
     font-weight: bold;
     left: 16vh;
     padding-left: 10px;
+    text-overflow: clip;
+    white-space: nowrap;
 }
 
 div.menu_button div p {
-    top: 5vh;
     left: 20% !important;
-    line-height: 6vh;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     font-weight: normal;
     font-size: 17px;
     width: 60% !important;
+    padding: 5px !important;
+    top: calc(50% - 6px);
+    height: 20px;
 }
 
 div.menu_button:nth-child(even) p {
@@ -173,7 +176,7 @@ div#tutorial_overlay div {
 }
 div#tutorial_overlay div p {
     color: rgb(0, 0, 0);
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
     padding: 10%;
     text-align: center;

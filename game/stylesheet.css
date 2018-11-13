@@ -20,7 +20,7 @@
 #number_bar {
     position: relative;
     display: flex;
-    font-family: serif;
+    font-family: "Times New Roman", Times, serif;
     color: white;
     background-color: black;
     margin-left: auto;
@@ -137,8 +137,8 @@ div#end_screen {
     background: rgb(0, 0, 0);
     margin-left: auto;
     margin-right: auto;
-    position: absolute;
-    font-family: sans-serif;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 22px;
     line-height: 60px;
@@ -168,6 +168,8 @@ div#end_screen div div p {
     width: 50%;
     text-decoration: inherit;
     position: absolute;
+    text-overflow: clip;
+    white-space: nowrap;
 }
 div#end_screen div div p:nth-child(even) {
     text-align: left;
@@ -180,7 +182,7 @@ div#end_screen div div p:nth-child(odd) {
     margin-right: 10px;
 }
 div#end_screen table {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -216,7 +218,7 @@ div#end_screen table {
 }
 
 p#score_counter {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: medium;
     height: 40px;
@@ -233,7 +235,7 @@ p#score_counter {
 }
 
 div#score_popup p {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: rgb(251, 251, 251);
     background: rgba(0, 0, 0, 0.75);
     text-align: center;
@@ -249,7 +251,7 @@ div#score_popup.shown {
 }
 
 #popout .popout_ui p {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     float: left;
     font-size: 20px;
     height: 40px;
