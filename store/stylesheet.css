@@ -3,26 +3,28 @@ div#store_items {
     width: 100%;
     position: absolute;
     top: 40px;
+    overflow-y: scroll;
 }
 div.store_item {
-    width: 50%;
-    height: 21%;
+    width: 95%;
+    height: 150px;
     background-color: rgba(255, 255, 255, 0.42);
     margin-left: auto;
     margin-right: auto;
     position: relative;
     margin-top: 1%;
-    box-shadow: 0px 0px 2px 0px #00000052;
+    box-shadow: 0px 0px 1px 0px #00000052;
     margin-bottom: 1%;
+    max-width: 700px;
 }
 div.store_item img {
-    height: 59%;
     position: absolute;
     display: block;
-    top: 26%;
-    box-shadow: 0px 0px 1px #7b7b7bcf;
-    left: 4%;
+    top: 29px;
     z-index: 2;
+    width: 15%;
+    border: 1px solid rgb(224, 224, 224);
+    left: 2.5%;
 }
 div.store_item p.cost {
     position: absolute;
@@ -42,11 +44,11 @@ div.store_item p.cost {
 div.store_item p.description {
     background: rgb(0, 0, 0);
     position: absolute;
-    left: 0%;
+    left: 20%;
     color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    width: 100%;
+    width: 80%;
     top: 0;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -70,7 +72,6 @@ div.store_item p.owned {
 @media all and (orientation: portrait) {
     div.store_item {
         width: 95%;
-        height: 22%;
         margin-top: 2%;
         margin-bottom: 1%;
     }
@@ -80,9 +81,11 @@ div.store_item p.owned {
         width: calc(100% - 40px);
         height: 40px;
     }
+    div.store_item img {
+    }
 }
 div.store_item.selected {
-    background: white;
+    background: hsl(0, 0%, 32%);
     cursor: pointer;
 }
 div.store_item.selected .owned {
