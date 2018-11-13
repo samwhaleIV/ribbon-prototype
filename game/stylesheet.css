@@ -121,10 +121,10 @@
     cursor: pointer;
 }
 div#score_popup {
-    position: relative;
+    position: absolute;
     z-index: 0;
     width: 100%;
-    top: -6%;
+    top: 23%;
     display: none;
 }
 div#score_popup.shown {
@@ -361,10 +361,10 @@ div#top_bar {
 
 @keyframes show_score {
     from {
-        top: -6%;
+        top: 23%;
     }
     to {
-        top: 10%;
+        top: 37%;
     }
 }
 
