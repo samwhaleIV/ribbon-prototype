@@ -108,7 +108,6 @@ div.menu_button div p {
     font-weight: normal;
     font-size: 17px;
     width: 60% !important;
-    padding: 5px !important;
     top: calc(50% - 6px);
     height: 20px;
 }
