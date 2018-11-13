@@ -10,7 +10,8 @@
 }
 @media all and (orientation: landscape) {
     .justified-fullscreen-square {
-        height: 67vh;
+        height: 71vh;
+        top: 60px;
     }
     .justified-fullscreen-square p {
         width: 100vh;
