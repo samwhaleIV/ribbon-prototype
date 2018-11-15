@@ -131,13 +131,13 @@ div#score_popup.shown {
     animation-name: show_score;
 }
 div#end_screen {
-    width: 100vw;
-    height: calc(100vh - 40px);
+    width: 100%;
+    height: calc(100% - 40px);
     top: 40px;
     background: rgb(0, 0, 0);
     margin-left: auto;
     margin-right: auto;
-    position: absolute;
+    position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 22px;
